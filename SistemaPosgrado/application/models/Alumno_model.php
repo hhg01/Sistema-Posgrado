@@ -51,11 +51,47 @@ class Alumno_model extends CI_Model{
 
 		return $respuesta_query;
 	}
+
 	function crear_direccion_alumno($vialidad,$exterior,$interior,$cp,$localidad,$municipio){
 		$custom_query = "INSERT INTO ADDRESSES (vialidad, exterior, interior, cp, localidad, id_municipio) VALUES ('".$vialidad."','".$exterior."','".$interior."','".$cp."','".$localidad."',".$municipio.")";
 		$respuesta_query = $this->db->query($custom_query);
-
 		if ($respuesta_query->num_rows() > 0) {
+			
+			return $respuesta_query->result_array();
+		} else {
+
+			return $respuesta_query=NULL;
+		}
+	}
+
+	function regresa_paises(){
+		$custom_query = "SELECT id, nombre FROM countries";
+		$respuesta_query = $this->db->query($custom_query);
+		if ($respuesta_query->num_rows() > 0) {
+			//echo '<script type="text/javascript">console.log("hola que hace");';
+
+			return $respuesta_query->result_array();
+		} else {
+			return $respuesta_query=NULL;
+		}
+	}
+
+	function regresa_estados($id_pais){
+		$custom_query = "SELECT cve_ent, nom_ent FROM states WHERE id_pais = '".$id_pais."'";
+		$respuesta_query = $this->db->query($custom_query);
+		//var_dump($respuesta_query->result_array());
+		if ($respuesta_query->num_rows() > 0) {
+			return $respuesta_query->result_array();
+		} else {
+			return $respuesta_query=NULL;
+		}
+	}
+
+	function regresa_municipios($id_municipio){
+		$custom_query = "SELECT cve_mun, nom_mun FROM municipalities WHERE cve_ent = '".$id_municipio."'";
+		$respuesta_query = $this->db->query($custom_query);
+		if ($respuesta_query->num_rows() > 0) {
+			//echo '<script type="text/javascript">console.log("hola que hace");';
 			return $respuesta_query->result_array();
 		} else {
 			return $respuesta_query=NULL;
