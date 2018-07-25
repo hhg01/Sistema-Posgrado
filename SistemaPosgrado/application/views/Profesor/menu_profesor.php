@@ -37,12 +37,12 @@
 	<br>
 	<div class="container">
 		<div class="row">
-	      	<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="confirmar_ueas()">
+			<div class="col s12 m3 l3">
+	        	<div class="card efect cyan darken-3" onclick="tutorados()">
 	          		<div class="card-content">
 	          			<div class="container">
-	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/shopping-list.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Confirmar</span>
+	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/teamwork.png">
+	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Tutorados</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -50,11 +50,11 @@
 	      	<div class="col s1 m1 l1">
 	      	</div>
 	      	<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="formatos()">
+	        	<div class="card efect cyan darken-3" onclick="asesorados()">
 	          		<div class="card-content">
 	          			<div class="container">
-	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/file.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Formatos</span>
+	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/multiple-users-silhouette.png">
+	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Asesorados</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -67,6 +67,17 @@
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/icon.png">
 	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Ajustes</span>
+	          			</div>
+	          		</div>
+	        	</div>
+	      	</div>
+
+	      	<div class="col s12 m3 l3">
+	        	<div class="card efect cyan darken-3" onclick="confirmar()">
+	          		<div class="card-content">
+	          			<div class="container">
+	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/shopping-list.png">
+	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Confirmar UEAs</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -88,10 +99,52 @@ $(document).ready(function(){
 	//console.log(datosProf);
 });
 
+function tutorados() {
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Profesor/obtener_datos_tutorados",
+    	data: datosProf,
+      	success: function(data) {
+        	$('#menuProfesor').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error de conexión');
+        }
+    });
+}
+
+function asesorados() {
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Profesor/obtener_datos_asesorados",
+    	data: datosProf,
+      	success: function(data) {
+        	$('#menuProfesor').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error de conexión');
+        }
+    });
+}
+
 function ajustes() {
 	$.ajax({
     	type: "POST",
     	url: "<?= base_url()?>index.php/Profesor/obtener_datos_profesor",
+    	data: datosProf,
+      	success: function(data) {
+        	$('#menuProfesor').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            alert('Error de conexión');
+        }
+    });
+}
+
+function confirmar() {
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Profesor/obtener_lista_alumnos",
     	data: datosProf,
       	success: function(data) {
         	$('#menuProfesor').replaceWith(data);

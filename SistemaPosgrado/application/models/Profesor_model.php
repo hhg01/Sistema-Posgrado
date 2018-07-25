@@ -27,5 +27,38 @@ class Profesor_model extends CI_Model{
 			return $respuesta_query=NULL;
 		}
 	}
+
+	function obtener_tutorados($economico){
+  		$custom_query = "SELECT U.id_user, U.apellido_paterno, U.apellido_materno, U.nombres, S.matricula, S.nivel, S.id_posgraduate FROM STUDENTS AS S INNER JOIN USERS AS U ON S.id_user = U.id_user INNER JOIN TUTORS AS T ON T.id_student = S.id_student INNER JOIN TEACHERS AS Tc ON T.id_teacher = Tc.id_teacher WHERE Tc.no_economico=".$economico;
+  		$respuesta_query = $this->db->query($custom_query);
+
+  		if ($respuesta_query->num_rows() > 0) {
+   			return $respuesta_query->result_array();
+  		} else {
+   			return $respuesta_query=NULL;
+  		}
+ 	}
+
+ 	function obtener_asesorados($economico){
+  		$custom_query = "SELECT U.id_user, U.apellido_paterno, U.apellido_materno, U.nombres, S.matricula, S.nivel, S.id_posgraduate, P.id_proyect FROM STUDENTS AS S INNER JOIN USERS AS U ON S.id_user = U.id_user INNER JOIN PROYECTS AS P ON P.id_student = S.id_student INNER JOIN RESPONSIBLE AS R ON R.id_proyect = P.id_proyect INNER JOIN TEACHERS AS Tc ON R.id_teacher = Tc.id_teacher WHERE Tc.no_economico=".$economico;
+  		$respuesta_query = $this->db->query($custom_query);
+
+  		if ($respuesta_query->num_rows() > 0) {
+   			return $respuesta_query->result_array();
+  		} else {
+   			return $respuesta_query=NULL;
+  		}
+ 	}
+
+ 	function obtener_horarios($matricula){
+ 		$custom_query = "SELECT st.matricula, us.apellido_paterno, us.apellido_materno, us.nombres, u.clave_uea, u.nombre, u.creditos FROM STUDENTS AS st JOIN REQUESTS AS re on st.id_student=re.id_student JOIN PLANNING AS pl on re.id_planning=pl.id_planning JOIN UEAS as u on pl.id_uea=u.clave_uea JOIN USERS AS us on st.id_user=us.id_user WHERE st.matricula=".$matricula;
+ 		$respuesta_query = $this->db->query($custom_query);
+
+  		if ($respuesta_query->num_rows() > 0) {
+   			return $respuesta_query->result_array();
+  		} else {
+   			return $respuesta_query=NULL;
+  		}
+ 	}
 }
 

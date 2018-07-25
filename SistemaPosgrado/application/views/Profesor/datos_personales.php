@@ -24,7 +24,7 @@
 	  	</nav>
 	</div>
 
-	<div class="conteiner" id="ajustesProfesor">
+	<div class="conteiner">
 		<div class="row">
 		    <div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
 				<div class="card blue-grey lighten-4">
@@ -43,33 +43,55 @@
 		                							<th>Datos Nuevos</th>
 		  										</tr>
 											</thead>
-<?
-echo 
-'<tbody>
-	<tr id="email'.$profesor_info_personal[0]["id_user"].'">
-	    <td><id="mi_email" type="text">'.$profesor_info_personal[0]["email"].'</td>
-	    <td><type="text">-></td>
-	    <td><id="nuevo_email" type="text"></td>
+<tbody>
+	<tr>
+	    <td id="mi_email" type="text"><?echo $profesor_info_personal[0]["email"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_email" type="text"></td>
 	</tr>
-	<tr id="telefono'.$profesor_info_personal[0]["id_user"].'">
-	    <td><id="mi_telefono" type="text">'.$profesor_info_personal[0]["telefono"].'</td>
-	    <td><type="text">-></td>
-	    <td><id="nuevo_telefono" type="text"></td>
+	<tr>
+	    <td id="mi_telefono" type="text"><?echo $profesor_info_personal[0]["telefono"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_telefono" type="text"></td>
 	</tr>
-	<tr id="celular'.$profesor_info_personal[0]["id_user"].'">
-	    <td><id="mi_celular" type="text">'.$profesor_info_personal[0]["celular"].'</td>
-	    <td><type="text">-></td>
-	    <td><id="nuevo_celular" type="text"></td>
+	<tr>
+	    <td id="mi_celular" type="text"><?echo $profesor_info_personal[0]["celular"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_celular" type="text"></td>
 	</tr>
-</tbody>';
-?>
+	<tr>
+	    <td id="mi_vialidad" type="text"><?echo $profesor_info_personal[0]["vialidad"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_vialidad" type="text"></td>
+	</tr>
+	<tr>
+	    <td id="mi_exterior" type="text"><?echo $profesor_info_personal[0]["exterior"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_exterior" type="text"></td>
+	</tr>
+	<tr>
+	    <td id="mi_interior" type="text"><?echo $profesor_info_personal[0]["interior"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_interior" type="text"></td>
+	</tr>
+	<tr>
+	    <td id="mi_cp" type="text"><?echo $profesor_info_personal[0]["cp"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_cp" type="text"></td>
+	</tr>
+	<tr>
+	    <td id="mi_localidad" type="text"><?echo $profesor_info_personal[0]["localidad"];?></td>
+	    <td type="text">-></td>
+	    <td id="nuevo_localidad" type="text"></td>
+	</tr>
+</tbody>
 		  								</table>
 									</div>
 								</div>
 						    </div>
 						    <div class="modal-footer blue-grey darken-1">
 						      	<a onclick="document.getElementById('modal1').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
-						      	<a class="modal-close btn-flat white-text">Aceptar</a>
+						      	<a class="modal-close btn-flat white-text" onclick="guardar_info()">Aceptar</a>
 						    </div>
 						</div>
 
@@ -117,7 +139,7 @@ echo
 			<br>
 			<a class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons" onclick="regresar()">reply</i></a>
 			<br><br>
-			<a class="btn-floating btn-medium blue"><i class="material-icons" onclick="document.getElementById('modal1').style.display='block'">archive</i></a>
+			<a class="btn-floating btn-medium blue"><i class="material-icons" onclick="cargar_info_modal()">archive</i></a>
 		</div>
 	</div>
 </div>
@@ -125,6 +147,72 @@ echo
 <script src="<?= base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 <script>
+function cargar_info_modal() {
+	var email = document.getElementById('correo_electronico').value;
+	var telefono = document.getElementById('telefono').value;
+	var celular = document.getElementById('celular').value;
+	var vialidad = document.getElementById('vialidad').value;;
+	var exterior = document.getElementById('exterior').value;;
+	var interior = document.getElementById('interior').value;;
+	var cp = document.getElementById('cp').value;;
+	var localidad = document.getElementById('localidad').value;;
+
+	var email_bd = '<?echo $profesor_info_personal[0]["email"]?>';
+	var telefono_bd = '<?echo $profesor_info_personal[0]["telefono"]?>';
+	var celular_bd = '<?echo $profesor_info_personal[0]["celular"]?>';
+	var vialidad_bd = '<?echo $profesor_info_personal[0]["vialidad"]?>';
+	var exterior_bd = '<?echo $profesor_info_personal[0]["exterior"]?>';
+	var interior_bd = '<?echo $profesor_info_personal[0]["interior"]?>';
+	var cp_bd = '<?echo $profesor_info_personal[0]["cp"]?>';
+	var localidad_bd = '<?echo $profesor_info_personal[0]["localidad"]?>';
+
+	if (email==email_bd && telefono==telefono_bd && celular==celular_bd && vialidad==vialidad_bd && exterior==exterior_bd && interior==interior_bd && cp==cp_bd && localidad==localidad_bd) {
+		alert("No hay cambios por realizar");
+		
+	} else {
+		document.getElementById("nuevo_email").innerHTML = email;
+		document.getElementById("nuevo_telefono").innerHTML = telefono;
+		document.getElementById("nuevo_celular").innerHTML = celular;
+		document.getElementById("nuevo_vialidad").innerHTML = vialidad;
+		document.getElementById("nuevo_exterior").innerHTML = exterior;
+		document.getElementById("nuevo_interior").innerHTML = interior;
+		document.getElementById("nuevo_cp").innerHTML = cp;
+		document.getElementById("nuevo_localidad").innerHTML = localidad;
+
+		document.getElementById('modal1').style.display='block';
+	}
+}
+
+function guardar_info() {
+	alert("update()");
+	/*var usuario = <?echo $profesor_info_personal[0]["id_user"]?>;
+	var id_direccion = <?echo $profesor_info_personal[0]["id_direccion"]?>;
+	var email = document.getElementById('correo_electronico').value;
+	var telefono = document.getElementById('telefono').value;
+	var celular = document.getElementById('celular').value;
+	var vialidad = document.getElementById('vialidad').value;
+	var exterior = document.getElementById('exterior').value;
+	var interior = document.getElementById('interior').value;
+	var cp = document.getElementById('cp').value;
+	var localidad = document.getElementById('localidad').value;
+	datos_alumno = {"usuario":usuario, "id_direccion":id_direccion, "correo":email, "telefono":telefono, "celular":celular, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad};
+
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Alumno/guardar_info_alumno",
+    	data: datos_alumno,
+      	success: function(data) {
+      		document.getElementById('modal1').style.display='none';
+        	alert("cambio efectuado");
+        	//$('#infoAlumno').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            document.getElementById('modal1').style.display='none';
+            alert('No puede haber campos vacios');
+        }
+    });*/
+}
+
 function regresar() {
 	$.ajax({
     	type: "POST",
