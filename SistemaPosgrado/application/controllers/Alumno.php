@@ -12,6 +12,7 @@ class Alumno extends CI_Controller {
 		$contraseña = $this->input->post('contraseña');
 
 		$data['alumno_info_personal'] = $this->alumno_model->obtener_datos_alumno($matricula,$contraseña);
+        $data['paises'] = $this->alumno_model->regresa_paises();
         if ($data['alumno_info_personal'] != NULL) {
             $this->load->view('Alumno/info_alumno',$data);
         } else {
@@ -64,4 +65,38 @@ class Alumno extends CI_Controller {
         }
         
 	}
+
+    function regresa_estados(){
+        $id_pais = $this->input->post('id_pais');
+        $lista_estados = $this->alumno_model->regresa_estados($id_pais);
+        if ($lista_estados == NULL) {
+            $lista = '<option value="Estados">Estados</option>';
+            echo $lista;
+            $this->response(array("code" => 204, "response" => "No se encontraron datos"));
+        } else {
+            $lista = '<option value="Estados">Estados</option>';
+            foreach ($lista_estados as $estado) {
+                $lista = $lista.'<option value="'.$estado['cve_ent'].'">'.$estado['nom_ent'].'</option>';
+            }
+                echo $lista;
+
+        }
+    }
+
+    function regresa_municipios(){
+        $id_estado = $this->input->post('id_estado');
+        $lista_municipios = $this->alumno_model->regresa_municipios($id_estado);
+        if ($lista_municipios == NULL) {
+            $lista = '<option value="Municipios">Municipios</option>';
+            echo $lista;
+            $this->response(array("code" => 204, "response" => "No se encontraron datos"));
+        } else {
+            $lista = '<option value="Municipios">Municipios</option>';
+            foreach ($lista_municipios as $municipio) {
+                $lista = $lista.'<option value="'.$municipio['cve_mun'].'">'.$municipio['nom_mun'].'</option>';
+            }
+                echo $lista;
+
+        }
+    }
 }
