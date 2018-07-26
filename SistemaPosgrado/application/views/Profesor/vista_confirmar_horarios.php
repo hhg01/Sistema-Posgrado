@@ -104,11 +104,35 @@ echo
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 <script>
 function confirmar_uea() {
-	alert("send_emal()");
+	var id = <?php echo $horarios[0]["id_student"]?>;
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Profesor/confirmar_email",
+    	data: {"datos":datosProf, "id_student":id},
+      	success: function(data) {
+      		alert("Se ha enviado un correo al alumno");
+        	//$('#vista_confirmar_horarios').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            alert('Revisa bien los campos');
+        }
+    });
 }
 
 function cancelar_uea() {
-	alert("delete() y send()");
+	var id = <?php echo $horarios[0]["id_student"]?>;
+	$.ajax({
+    	type: "POST",
+    	url: "<?= base_url()?>index.php/Profesor/cancelar_email",
+    	data: {"datos":datosProf, "id_student":id},
+      	success: function(data) {
+      		alert("Se ha enviado un correo al alumno");
+        	//$('#vista_confirmar_horarios').replaceWith(data);
+        },
+      	error: function (xhr, ajaxOptions, thrownError) {
+            alert('Revisa bien los campos');
+        }
+    });
 }
 
 function regresar() {

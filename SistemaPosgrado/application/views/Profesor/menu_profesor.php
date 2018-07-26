@@ -72,7 +72,7 @@
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/icon.png">
-	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Ajustes</span>
+	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Mis Datos</span>
 	          			</div>
 	          		</div>
 	        	</div>
