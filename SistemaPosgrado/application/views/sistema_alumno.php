@@ -11,10 +11,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	<script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 <style>
 .color{
-	background: #388135;
+	background: #035887;
 }
 .fondo{
-	background: #71c46e;
+	background: #035887;
 }
 </style>
 </head>

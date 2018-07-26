@@ -5,17 +5,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style type="text/css">
-		.new_color{
-			background-color: #388135;
-		}
-		.card_color{
-			background-color: #b2fac7;
-		}
-		.button_color{
-			background-color: #FFAB00;
-		}
-	</style>
+<style>
+.new_color{
+	background-color: #035887;
+}
+.card_color{
+	background-color: #c4e9f7;
+}
+.button_color{
+	background-color: #035887;
+}
+</style>
 </head>
 <body>
 
@@ -38,15 +38,15 @@
 	<div class="conteiner">
 		<div class="row">
 		    <div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
-				<div class="card_color">
+				<div class="blue-grey lighten-4">
 					
-<?php 
+<?php
 foreach ($asesorados as $asesorado) {
 	echo 
 	'<div class="col s12 m6 l3">
 		<div class="card card_color">
 			<div class="card-image">
-  				<img class="activator responsive-img" src="http://localhost:8080/SistemaPosgrado/assets/imag/man.png">
+  				<img class="activator responsive-img" src="http://localhost/SistemaPosgrado/assets/imag/man.png">
   				<a class="btn-floating halfway-fab waves-effect waves-light button_color" id="clave'.$asesorado["matricula"].'" onclick="info_alumno('.$asesorado["matricula"].')"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">
@@ -75,7 +75,7 @@ foreach ($asesorados as $asesorado) {
 					</p>
 				</blockquote>
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
 

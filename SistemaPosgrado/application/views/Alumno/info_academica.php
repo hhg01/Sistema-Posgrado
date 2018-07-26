@@ -8,10 +8,10 @@
 </head>
 <style type="text/css">
 	.new_color{
-		background-color: #388135;
+		background-color: #035887;
 	}
 	.card_color{
-			background-color: #b2fac7;
+			background-color: #c4e9fe;
 		}
 </style>
 <body>

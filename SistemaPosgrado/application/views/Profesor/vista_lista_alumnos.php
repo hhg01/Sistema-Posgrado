@@ -7,13 +7,13 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style type="text/css">
     .new_color{
-      background-color: #388135;
+      background-color: #035887;
     }
     .card_color{
-      background-color: #b2fac7;
+      background-color: #c4e9fe;
     }
     .button_color{
-      background-color: #FFAB00;
+      background-color: #035887;
     }
   </style>
 </head>

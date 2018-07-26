@@ -15,10 +15,10 @@
 	box-shadow: inset 0 0 150px rgba(255, 255, 255, 50), 0 0 20px rgba(255, 255, 255, 50);
 }
 .new_color{
-	background-color: #388135;
+	background-color: #035887;
 }
 .card_color{
-	background-color: #58a433;
+	background-color: #c4e9fe;
 }
 </style>
 </head>
@@ -48,7 +48,7 @@
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/teamwork.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Tutorados</span>
+	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Tutorados</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -60,7 +60,7 @@
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/multiple-users-silhouette.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Asesorados</span>
+	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Asesorados</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -72,7 +72,7 @@
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/icon.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Ajustes</span>
+	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Ajustes</span>
 	          			</div>
 	          		</div>
 	        	</div>
@@ -83,7 +83,7 @@
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/shopping-list.png">
-	          				<span class="card-title blue-text text-lighten-5" style="text-align: center">Confirmar UEAs</span>
+	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Confirmar UEAs</span>
 	          			</div>
 	          		</div>
 	        	</div>

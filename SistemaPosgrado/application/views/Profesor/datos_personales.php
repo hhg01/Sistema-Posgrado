@@ -12,13 +12,13 @@
 			width: 150px;
 		}
 		.new_color{
-			background-color: #338135;
+			background-color: #035887;
 		}
 		.card_color{
-			background-color: #b2fac7;
+			background-color: #c4e9fe;
 		}
 		.button_color{
-			background-color: #FFAB00;
+			background-color: #035887;
 		}
 	</style>
 </head>
@@ -106,7 +106,7 @@
 									</div>
 								</div>
 						    </div>
-						    <div class="modal-footer new_color">
+						    <div class="modal-footer blue-grey darken-1">
 						      	<a onclick="document.getElementById('modal1').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
 						      	<a class="modal-close btn-flat white-text" onclick="guardar_info()">Aceptar</a>
 						    </div>
