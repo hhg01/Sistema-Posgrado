@@ -14,13 +14,19 @@
 .efect:hover {
 	box-shadow: inset 0 0 150px rgba(255, 255, 255, 50), 0 0 20px rgba(255, 255, 255, 50);
 }
+.new_color{
+	background-color: #388135;
+}
+.card_color{
+	background-color: #58a433;
+}
 </style>
 </head>
 <body>
 
 <div  id="menuProfesor">
 	<div class="navbar-fixed">
-	  	<nav class="nav-extended blue-grey darken-1">
+	  	<nav class="nav-extended new_color">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
 	      			<?php echo
@@ -38,7 +44,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="tutorados()">
+	        	<div class="card efect card_color" onclick="tutorados()">
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/teamwork.png">
@@ -50,7 +56,7 @@
 	      	<div class="col s1 m1 l1">
 	      	</div>
 	      	<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="asesorados()">
+	        	<div class="card efect card_color" onclick="asesorados()">
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/multiple-users-silhouette.png">
@@ -62,7 +68,7 @@
 	      	<div class="col s1 m1 l1">
 	      	</div>
 	      	<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="ajustes()">
+	        	<div class="card efect card_color" onclick="ajustes()">
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/icon.png">
@@ -73,7 +79,7 @@
 	      	</div>
 
 	      	<div class="col s12 m3 l3">
-	        	<div class="card efect cyan darken-3" onclick="confirmar()">
+	        	<div class="card efect card_color" onclick="confirmar()">
 	          		<div class="card-content">
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/shopping-list.png">
@@ -83,6 +89,20 @@
 	        	</div>
 	      	</div>
 		</div>
+		<div class="row">
+			<div class="col s12 m12 l12 black-text" style="background-color: #ffffff">
+				<h5>¿Necesitas ayuda?</h5>
+				<blockquote style="border-color: #FFAB00;">
+					<p>
+						Botones<br><br>
+						<strong>Asesorados:</strong> Lista de alumnos a los que asesoras (incluye su información)<br>
+						<strong>Tutorados:</strong> Lista de alumnos que son tus tutorados (incluye su información)<br>
+						<strong>Confirmar UEAS:</strong> Acepta o declina las UEAS que han escogido tus alumnos<br>
+						<strong>Ajustes:</strong> Actualiza o consulta tu información personal<br>
+					</p>
+				</blockquote>
+			</div>
+		</div>	
 	</div>
 
 </div>

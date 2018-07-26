@@ -5,12 +5,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style type="text/css">
+    .new_color{
+      background-color: #388135;
+    }
+    .card_color{
+      background-color: #b2fac7;
+    }
+    .button_color{
+      background-color: #FFAB00;
+    }
+  </style>
 </head>
 <body>
 
 <div  id="vista_lista_alumnos">
 	<div class="navbar-fixed">
-	  	<nav class="nav-extended blue-grey darken-1">
+	  	<nav class="nav-extended new_color">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
 	      			<?php echo
@@ -27,7 +38,7 @@
 	<div class="conteiner">
 			<div class="row">
 			    <div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
-					<div class="card blue-grey lighten-4">
+					<div class="card card_color">
 						<div class="card-content">
 <?php echo
 '<div class="conteiner">
@@ -49,7 +60,7 @@
                       		<tr id="clave'.$tutorado["matricula"].'">
 		                        <td><id="nombre" type="text">'.$tutorado["apellido_paterno"].' '.$tutorado["apellido_materno"].' '.$tutorado["nombres"].'</td>
 		                        <td><id="nivel" type="text">'.$tutorado["nivel"].'</td>
-		                        <td><a id="id'.$tutorado["matricula"].'" class="waves-effect waves-light btn-small blue" onclick="revisar_horario('.$tutorado["matricula"].')"><i class="material-icons center">schedule</i></a></td>
+		                        <td><a id="id'.$tutorado["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$tutorado["matricula"].')"><i class="material-icons center">schedule</i></a></td>
                       		</tr>
                     	</tbody>';
                   		}
@@ -81,7 +92,7 @@
                       		<tr id="clave'.$asesor["matricula"].'">
 		                        <td><id="nombre" type="text">'.$asesor["apellido_paterno"].' '.$asesor["apellido_materno"].' '.$asesor["nombres"].'</td>
 		                        <td><id="nivel" type="text">'.$asesor["nivel"].'</td>
-		                        <td><a id="id'.$asesor["matricula"].'" class="waves-effect waves-light btn-small blue" onclick="revisar_horario('.$asesor["matricula"].')"><i class="material-icons center">schedule</i></a></td>
+		                        <td><a id="id'.$asesor["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$asesor["matricula"].')"><i class="material-icons center">schedule</i></a></td>
                       		</tr>
                     	</tbody>';
                   		}
@@ -97,8 +108,21 @@
 				</div>
 			</div>
 			<br>
-			<a class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons" onclick="regresar()">reply</i></a>
+			<a class="btn-floating btn-medium waves-effect button_color"><i class="material-icons" onclick="regresar()">reply</i></a>
 		</div>
+    <div class="row">
+      <div class="col s12 m12 l12 black-text" style="background-color: #ffffff">
+        <h5>¿Necesitas ayuda?</h5>
+        <blockquote style="border-color: #FFAB00;">
+          <p>
+            Aparece una lista con los nombres de tus asesorados y tutorados por separado.<br>
+            Para consultar los horarios que escogieron presiona el botón <a class="btn-small button_color"><i class="material-icons center">schedule</i></a><br><br>
+            Para regresar al menú del profesor presiona el botón <a class="btn-floating btn-medium button_color"><i class="material-icons">reply</i></a>
+          </p>
+        </blockquote>
+      </div>
+    </div>  
+  </div>
 	</div>
 </div>
 

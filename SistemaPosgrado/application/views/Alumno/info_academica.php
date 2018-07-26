@@ -6,11 +6,19 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style type="text/css">
+	.new_color{
+		background-color: #388135;
+	}
+	.card_color{
+			background-color: #b2fac7;
+		}
+</style>
 <body>
 
 <div id="infoAcademica">
 	<div class="navbar-fixed">
-	  	<nav class="nav-extended blue-grey darken-1">
+	  	<nav class="nav-extended new_color">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
 	        		<li><a onclick="info_alumno()">Información Personal</a></li>
@@ -27,7 +35,7 @@
 	<div class="conteiner">
 		<div class="row">
 		    <div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
-				<div class="card blue-grey lighten-4">
+				<div class="card card_color">
 					<div class="card-content">
 						<span class="card-title">Información Academica</span>
 <?php echo
@@ -76,8 +84,21 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col s12 m12 l12 black-text">
+				<h5>¿Necesitas ayuda?</h5>
+				<blockquote style="border-color: #FFAB00;">
+					<p>
+						En este apartado únicamente podrás ver tu información académica.
+					</p>
+				</blockquote>
+			</div>
+		</div>	
 	</div>
+
+
 </div>
+
 
 <script src="<?= base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
