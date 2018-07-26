@@ -13,7 +13,7 @@
 	  	<nav class="nav-extended blue-grey darken-1">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	      			<?echo
+	      			<?php echo
 	      			'<li class="tab disabled"><a>'.$profesor[0]["apellido_paterno"].' '.$profesor[0]["apellido_materno"].' '.$profesor[0]["nombres"].'</a></li>';
 	      			?>
 	      		</ul>
@@ -45,42 +45,42 @@
 											</thead>
 <tbody>
 	<tr>
-	    <td id="mi_email" type="text"><?echo $profesor_info_personal[0]["email"];?></td>
+	    <td id="mi_email" type="text"><?php echo $profesor_info_personal[0]["email"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_email" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_telefono" type="text"><?echo $profesor_info_personal[0]["telefono"];?></td>
+	    <td id="mi_telefono" type="text"><?php echo $profesor_info_personal[0]["telefono"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_telefono" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_celular" type="text"><?echo $profesor_info_personal[0]["celular"];?></td>
+	    <td id="mi_celular" type="text"><?php echo $profesor_info_personal[0]["celular"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_celular" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_vialidad" type="text"><?echo $profesor_info_personal[0]["vialidad"];?></td>
+	    <td id="mi_vialidad" type="text"><?php echo $profesor_info_personal[0]["vialidad"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_vialidad" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_exterior" type="text"><?echo $profesor_info_personal[0]["exterior"];?></td>
+	    <td id="mi_exterior" type="text"><?php echo $profesor_info_personal[0]["exterior"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_exterior" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_interior" type="text"><?echo $profesor_info_personal[0]["interior"];?></td>
+	    <td id="mi_interior" type="text"><?php echo $profesor_info_personal[0]["interior"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_interior" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_cp" type="text"><?echo $profesor_info_personal[0]["cp"];?></td>
+	    <td id="mi_cp" type="text"><?php echo $profesor_info_personal[0]["cp"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_cp" type="text"></td>
 	</tr>
 	<tr>
-	    <td id="mi_localidad" type="text"><?echo $profesor_info_personal[0]["localidad"];?></td>
+	    <td id="mi_localidad" type="text"><?php echo $profesor_info_personal[0]["localidad"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_localidad" type="text"></td>
 	</tr>
@@ -96,7 +96,7 @@
 						</div>
 
 						<span class="card-title">Información Personal</span>
-<? echo 
+<?php echo 
 '<div class="conteiner">
 	<div class="row">
 		<div class="col s4 m4 l4">
@@ -157,14 +157,14 @@ function cargar_info_modal() {
 	var cp = document.getElementById('cp').value;;
 	var localidad = document.getElementById('localidad').value;;
 
-	var email_bd = '<?echo $profesor_info_personal[0]["email"]?>';
-	var telefono_bd = '<?echo $profesor_info_personal[0]["telefono"]?>';
-	var celular_bd = '<?echo $profesor_info_personal[0]["celular"]?>';
-	var vialidad_bd = '<?echo $profesor_info_personal[0]["vialidad"]?>';
-	var exterior_bd = '<?echo $profesor_info_personal[0]["exterior"]?>';
-	var interior_bd = '<?echo $profesor_info_personal[0]["interior"]?>';
-	var cp_bd = '<?echo $profesor_info_personal[0]["cp"]?>';
-	var localidad_bd = '<?echo $profesor_info_personal[0]["localidad"]?>';
+	var email_bd = '<?php echo $profesor_info_personal[0]["email"]?>';
+	var telefono_bd = '<?php echo $profesor_info_personal[0]["telefono"]?>';
+	var celular_bd = '<?php echo $profesor_info_personal[0]["celular"]?>';
+	var vialidad_bd = '<?php echo $profesor_info_personal[0]["vialidad"]?>';
+	var exterior_bd = '<?php echo $profesor_info_personal[0]["exterior"]?>';
+	var interior_bd = '<?php echo $profesor_info_personal[0]["interior"]?>';
+	var cp_bd = '<?php echo $profesor_info_personal[0]["cp"]?>';
+	var localidad_bd = '<?php echo $profesor_info_personal[0]["localidad"]?>';
 
 	if (email==email_bd && telefono==telefono_bd && celular==celular_bd && vialidad==vialidad_bd && exterior==exterior_bd && interior==interior_bd && cp==cp_bd && localidad==localidad_bd) {
 		alert("No hay cambios por realizar");
@@ -185,8 +185,8 @@ function cargar_info_modal() {
 
 function guardar_info() {
 	alert("update()");
-	/*var usuario = <?echo $profesor_info_personal[0]["id_user"]?>;
-	var id_direccion = <?echo $profesor_info_personal[0]["id_direccion"]?>;
+	/*var usuario = <?php echo $profesor_info_personal[0]["id_user"]?>;
+	var id_direccion = <?php echo $profesor_info_personal[0]["id_direccion"]?>;
 	var email = document.getElementById('correo_electronico').value;
 	var telefono = document.getElementById('telefono').value;
 	var celular = document.getElementById('celular').value;

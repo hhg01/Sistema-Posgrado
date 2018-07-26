@@ -4,126 +4,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UFT-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<script src="<?= base_url()?>assets/js/jquery.min.js"></script>
   	<script src="<?= base_url()?>assets/js/materialize.min.js"></script>
-	<title>Posgrado UAMI</title>
+	<title>Posgrado UAM</title>
+<style>
+.card {
+    border-radius: 50%;
+   
+}
+.color{
+	background: #388135;
+}
+.fondo{
+	background: #71c46e;
+}
+</style>
 </head>
 
 <body id="contenido">
-	<div class="row">
-
-		<div class="col s4 m4 l4">
-      		<div class="card blue-grey darken-1">
-        		<div class="card-content white-text">
-          			<p>ALUMNOS</p>
-          			<p>La contraseña está formada por la clave de unidad y la fecha de nacimiento:</p>
-      				<ul>
-      					<li>1 Azcapotzalco</li>
-      					<li>2 Iztapalapa</li>
-      					<li>3 Xochimilco</li>
-      					<li>4 Cuajimalpa</li>
-      				</ul>
-          		<img class="responsive-img" src="<?= base_url()?>assets/imag/contRapida.png">
-        		</div>
-      		</div>
+	<div class="row"><!--Logo y mensaje de bienvenida-->
+	<br>
+		<div class="col s12 m12 l12 center">
+			<img src="<?= base_url()?>assets/imag/logo_pcyti_small.png" class="resposive-img">
+			<br>
+			<h2>Bienvenido al Sistema</h2>
     	</div>
-
-		<div class="col s4 m4 l4">
-			<div class="card">
-				<div class="card-content">
-            		<span class="card-title">Alumnos</span>
-					<div class="row">
-  						<div class="input-field col s12 m12 l12">
-    						<input id="matricula" type="text" class="validate">
-    						<label for="matricula">Matricula</label>
-  						</div>
-  						<div class="input-field col s12 m12 l12">
-    						<input id="password" type="password" class="validate">
-    						<label for="password">Contraseña</label>
-  						</div>
-  					</div>
-				</div>
-				<div class="card-action">
-					<a class="waves-effect waves-light btn-large blue-grey lighten-1" type="submit" name="action" id="ingresar" onclick="ingresar_alumnos()">Ingresar</a>
-				</div>
-			</div>
+	</div>
+	
+	<br>
+		<!--Botones de acceso-->
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m1 l1"></div>
+			<div class="col s12 m3 l3">
+				<a style="display:block" href="http://localhost/SistemaPosgrado/index.php/Ingresar/ingresar_alumno">
+		        	<div class="card fondo hoverable">
+		          		<div class="card-content">
+		          			<div class="container">
+		          				<img class="circle responsive-img" src="<?= base_url()?>assets/imag/study.png" href="">
+		          				<span class="card-title blue-text text-lighten-5" style="text-align: center"><strong>Alumnos</strong></span>
+		          			</div>
+		          		</div>
+		        	</div>
+	        	</a>
+	      	</div>
+	      	<div class="col s12 m4 l4"></div>
+	      	<div class="col s12 m3 l3">
+	      		<a style="display:block" href="http://localhost/SistemaPosgrado/index.php/Ingresar/ingresar_profesor">
+		        	<div class="card efect fondo hoverable">
+		          		<div class="card-content">
+		          			<div class="container">
+		          				<img class="circle responsive-img" src="<?= base_url()?>assets/imag/teacher.png">
+		          				<span class="card-title blue-text text-lighten-5" style="text-align: center"><strong>Profesores</strong></span>
+		          			</div>
+		          		</div>
+		        	</div>
+		        </a>
+	      	</div>
 		</div>
-      	
-      	<div class="col s4 m4 l4">
-        	<div class="card">
-          		<div class="card-content">
-            		<span class="card-title">Profesores</span>
-            		<div class="row">
-                		<div class="input-field col s12 m12 l12">
-                    		<input id="economico" type="text" class="validate">
-                    		<label for="economico">No. Económico</label>
-                		</div>
-                		<div class="input-field col s12 m12 l12">
-                    		<input id="passwordNo" type="password" class="validate">
-                    		<label for="passwordNo">Contraseña</label>
-                		</div>
-            		</div>
-          		</div>
-          		<div class="card-action">
-            		<a class="waves-effect waves-light btn-large blue-grey lighten-1" type="submit" name="action" id="ingresar" onclick="ingresar_profesores()">Ingresar</a>
-          		</div>
-        	</div>
-      	</div>
 	</div>
 
-<script>
-function ingresar_alumnos(){
-	var matricula = document.getElementById('matricula').value;
-	var password = document.getElementById('password').value;
+	<br>
+	<footer class="page-footer color">
+      	<div class="footer-copyright">
+        	<div class="container">
+        		© 2018 Copyright
+        	<a class="grey-text text-lighten-4 right" href="#!">UAM</a>
+        	</div>
+      	</div>
+    </footer>
 
-	if (matricula !== '' && password !== '') {
-	  	var datos={
-	    	"matricula": matricula,
-	    	"contraseña": password
-	  	};
-	    $.ajax({
-	    	type: "POST",
-	      	url: "<?= base_url()?>index.php/Alumno/obtener_informacion",
-	      	data: datos,
-	      	success: function(data) {
-	      		$('#contenido').replaceWith(data);
-	      	},
-	      	error: function (xhr, ajaxOptions, thrownError) {
-	        	alert('Revisa bien los campos');
-	      	}
-	    });
-	} else {
-  		alert("Te falta algún campo");  
-	}
-}
-
-function ingresar_profesores(){
-	var economico = document.getElementById('economico').value;
-	var password_no = document.getElementById('passwordNo').value;
-
-	if (economico !== '' && password_no !== '') {
-	  	var datos={
-	    	"economico": economico,
-	    	"contraseña": password_no
-	  	};
-	  	$.ajax({
-	    	type: "POST",
-	    	url: "<?= base_url()?>index.php/Profesor/ingresar",
-	    	data: datos,
-	    	success: function(data) {
-	      		$('#contenido').replaceWith(data);
-	    	},
-	    	error: function (xhr, ajaxOptions, thrownError) {
-	      		alert('Revisa bien los campos');
-	    	}
-	  	});
-	} else {
-  		alert("Te falta algún campo");  
-	}
-}
-</script>
+<script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
 	  	<nav class="nav-extended blue-grey darken-1">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	      			<?echo
+	      			<?php echo
 	      			'<li class="tab disabled"><a>'.$profesor[0]["apellido_paterno"].' '.$profesor[0]["apellido_materno"].' '.$profesor[0]["nombres"].'</a></li>';
 	      			?>
 	      		</ul>
@@ -93,8 +93,8 @@
 <script>
 var datosProf;
 $(document).ready(function(){
-	var economico = <?echo $profesor[0]["no_economico"]?>;
-	var password = <?echo $profesor[0]["password"]?>;
+	var economico = <?php echo $profesor[0]["no_economico"]?>;
+	var password = <?php echo $profesor[0]["password"]?>;
 	datosProf = {'economico': economico, 'contraseña':password};
 	//console.log(datosProf);
 });

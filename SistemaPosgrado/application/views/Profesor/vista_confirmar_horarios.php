@@ -13,7 +13,7 @@
 	  	<nav class="nav-extended blue-grey darken-1">
 	    	<div class="nav-wrapper">
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	      			<?echo
+	      			<?php echo
 	      			'<li class="tab disabled"><a>'.$profesor[0]["apellido_paterno"].' '.$profesor[0]["apellido_materno"].' '.$profesor[0]["nombres"].'</a></li>';
 	      			?>
 	      		</ul>
@@ -29,7 +29,7 @@
 			    <div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
 					<div class="card blue-grey lighten-4">
 						<div class="card-content">
-<?
+<?php
 echo '<h6>Alumno: '.$horarios[0]["apellido_paterno"].' '.$horarios[0]["apellido_materno"].' '.$horarios[0]["nombres"].' ('.$horarios[0]["matricula"].')</h6>';
 echo 
 '<div class="conteiner">

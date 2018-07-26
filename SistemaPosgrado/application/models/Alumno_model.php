@@ -65,7 +65,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function regresa_paises(){
-		$custom_query = "SELECT id, nombre FROM countries";
+		$custom_query = "SELECT id, nombre FROM COUNTRIES";
 		$respuesta_query = $this->db->query($custom_query);
 		if ($respuesta_query->num_rows() > 0) {
 			//echo '<script type="text/javascript">console.log("hola que hace");';
@@ -77,7 +77,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function regresa_estados($id_pais){
-		$custom_query = "SELECT cve_ent, nom_ent FROM states WHERE id_pais = '".$id_pais."'";
+		$custom_query = "SELECT cve_ent, nom_ent FROM STATES WHERE id_pais = '".$id_pais."'";
 		$respuesta_query = $this->db->query($custom_query);
 		//var_dump($respuesta_query->result_array());
 		if ($respuesta_query->num_rows() > 0) {
@@ -88,7 +88,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function regresa_municipios($id_municipio){
-		$custom_query = "SELECT cve_mun, nom_mun FROM municipalities WHERE cve_ent = '".$id_municipio."'";
+		$custom_query = "SELECT cve_mun, nom_mun FROM MUNICIPALITIES WHERE cve_ent = '".$id_municipio."'";
 		$respuesta_query = $this->db->query($custom_query);
 		if ($respuesta_query->num_rows() > 0) {
 			//echo '<script type="text/javascript">console.log("hola que hace");';

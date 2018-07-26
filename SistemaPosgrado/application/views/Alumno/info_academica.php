@@ -30,7 +30,7 @@
 				<div class="card blue-grey lighten-4">
 					<div class="card-content">
 						<span class="card-title">Información Academica</span>
-<? echo
+<?php echo
 '<div class="conteiner">
 	<div class="row">
 		<div class="col s4 m4 l4">
