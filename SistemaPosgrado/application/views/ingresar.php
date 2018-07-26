@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body id="contenido">
 		<!--Botones de acceso-->
-	<div class="container z-depth-3">
+	<div class="container z-depth-3" style="background-color: white;">
 		<div class="row"><!--Logo y mensaje de bienvenida-->
 			<br>
 				<div class="col s12 m12 l12 center">
