@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row"><!--Logo y mensaje de bienvenida-->
 			<br>
 				<div class="col s12 m12 l12 center">
-					<img src="<?= base_url()?>assets/imag/PCyTI.png" class="resposive-img z-depth-3" width="210px">
+					<img src="<?= base_url()?>assets/imag/PCyTI.png" class="resposive-img" width="210px">
 					<br>
 					<h4><strong>Bienvenido al Sistema</strong></h4>
     			</div>
