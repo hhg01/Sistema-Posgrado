@@ -141,16 +141,18 @@
 	  			</tr>
 			</thead>';
 	  		foreach ($ueas as &$uea) {
-	    	echo
-	    	'<tbody>
-	      		<tr id="clave'.$uea["clave_uea"].'">
-	                <td><id="clave_uea" type="text">'.$uea["clave_uea"].'</td>
-	                <td><id="nombre_uea" type="text">'.$uea["nombre"].'</td>
-	                <td><id="creditos_uea" type="text">'.$uea["creditos"].'</td>
+	    		if ($uea['clave_uea'] != 0) {
+	    			echo
+			    	'<tbody>
+			      		<tr id="clave'.$uea["clave_uea"].'">
+			                <td><id="clave_uea" type="text">'.$uea["clave_uea"].'</td>
+			                <td><id="nombre_uea" type="text">'.$uea["nombre"].'</td>
+			                <td><id="creditos_uea" type="text">'.$uea["creditos"].'</td>
 
-	                <td><label><input type="checkbox" class="filled-in" id="caja'.$uea["clave_uea"].'" onclick="egregar_quitar_uea('.$uea["clave_uea"].')"/><span>Agregar</span></label></td>
-	      		</tr>
-	    	</tbody>';
+			                <td><label><input type="checkbox" class="filled-in" id="caja'.$uea["clave_uea"].'" onclick="egregar_quitar_uea('.$uea["clave_uea"].')"/><span>Agregar</span></label></td>
+			      		</tr>
+			    	</tbody>';
+	    		}
 	  		}
 			echo
 		'</table>
@@ -233,25 +235,42 @@ function cancelar_uea() {
 }
 
 function enviar_confirmacion() {
-	alert("insert() y send_email()");
-	/*$.ajax({
+	//alert("insert() y send_email()");
+	$.ajax({
     	type: "POST",
-      	url: "<?= base_url()?>index.php/Alumno/enviar_correo_confirmacion",
-      	data: {"datos":datos, "materias":lista_ueas},
+      	url: "<?= base_url()?>index.php/Alumno/agregar_horario",
+      	data: {"datos":datos,"ueas":lista_ueas},
       	success: function(data) {
-      		//alert("Información enviada. Espera respuesta");
-			//document.getElementById('modal1').style.display='none';
+      		alert("Información enviada. Espera respuesta");
+			document.getElementById('modal1').style.display='none';
+			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
+			//console.log(data);
 			//document.getElementById("aceptar").disabled = true;
-      		$('#infoUeas').replaceWith(data);
+      		//$('#infoUeas').replaceWith(data);
       	},
       	error: function (xhr, ajaxOptions, thrownError) {
         	alert('Error al enviar la información');
       	}
-    });*/
+    });
 }
 
 function inscripcion_blanco() {
-	alert("insert() y send_email()");
+	//alert("insert() y send_email()");
+	$.ajax({
+		type: "POST",
+		url: "<?= base_url()?>index.php/Alumno/agregar_uea_blanco",
+		data: {"datos":datos},
+		success: function(data) {
+      		alert("Información enviada. Espera respuesta");
+			//document.getElementById('modal1').style.display='none';
+			console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
+			console.log(data);
+			//document.getElementById("aceptar").disabled = true
+      	},
+      	error: function (xhr, ajaxOptions, thrownError) {
+        	alert('Error al enviar la información');
+      	}
+	})
 }
 
 function info_alumno(){
