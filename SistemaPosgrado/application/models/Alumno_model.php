@@ -40,7 +40,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function actualizar_datos_alumno($usuario,$correo,$telefono,$celular){
-		$custom_query = "UPDATE USERS set email='".$correo."', telefono=".$telefono.", celular=".$celular." where id_user=".$usuario.";";
+		$custom_query = "UPDATE USERS set telefono=".$telefono.", celular=".$celular." where id_user=".$usuario.";";
 		$respuesta_query = $this->db->query($custom_query);
 
 		return $respuesta_query;

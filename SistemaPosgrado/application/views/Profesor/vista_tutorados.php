@@ -5,17 +5,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style type="text/css">
-		.new_color{
-			background-color: #388135;
-		}
-		.card_color{
-			background-color: #b2fac7;
-		}
-		.button_color{
-			background-color: #FFAB00;
-		}
-	</style>
+<style>
+.new_color{
+	background-color: #035887;
+}
+.card_color{
+	background-color: #c4e9f7;
+}
+.button_color{
+	background-color: #035887;
+}
+</style>
 </head>
 <body>
 
@@ -44,10 +44,10 @@
 foreach ($tutorados as $tutorado) {
 	echo 
 	'<div class="col s12 m6 l3">
-		<div class="card card_color">
+		<div class="card card_color lighten-4">
 			<div class="card-image">
-  				<img class="activator responsive-img" src="http://localhost:8080/SistemaPosgrado/assets/imag/man.png">
-  				<a class="btn-floating halfway-fab waves-effect waves-light button_color" id="clave'.$tutorado["matricula"].'" onclick="info_alumno('.$tutorado["matricula"].')"><i class="material-icons">add</i></a>
+  				<img class="activator responsive-img" src="http://localhost/SistemaPosgrado/assets/imag/man.png">
+  				<a class="btn-floating halfway-fab waves-effect waves-light blue" id="clave'.$tutorado["matricula"].'" onclick="info_alumno('.$tutorado["matricula"].')"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">
   				<label class="black-text" id="'.$tutorado["matricula"].'">'.$tutorado["apellido_paterno"].' '.$tutorado["apellido_materno"].' '.$tutorado["nombres"].'</label>
@@ -62,7 +62,7 @@ foreach ($tutorados as $tutorado) {
 				</div>
 			</div>
 			<br>
-			<a class="btn-floating btn-medium waves-effect button_color"><i class="material-icons" onclick="regresar()">reply</i></a>
+			<a class="btn-floating btn-medium waves-effect waves-light button_color"><i class="material-icons" onclick="regresar()">reply</i></a>
 		</div>
 		<div class="row">
 			<div class="col s12 m12 l12 black-text" style="background-color: #ffffff">
@@ -75,7 +75,7 @@ foreach ($tutorados as $tutorado) {
 					</p>
 				</blockquote>
 			</div>
-		</div>	
+		</div>
 	</div>
 </div>
 

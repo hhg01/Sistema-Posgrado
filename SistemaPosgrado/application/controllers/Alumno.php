@@ -47,22 +47,22 @@ class Alumno extends CI_Controller {
         $correo = $this->input->post('correo');
         $telefono = $this->input->post('telefono');
         $celular = $this->input->post('celular');
-        $num_direccion = $this->input->post('id_direccion');
+        /*$num_direccion = $this->input->post('id_direccion');
         $vialidad = $this->input->post('vialidad');
         $exterior = $this->input->post('exterior');
         $interior = $this->input->post('interior');
         $cp = $this->input->post('cp');
         $localidad = $this->input->post('localidad');
-        $municipio = 001;
+        $municipio = 001;*/
         
-        if ($num_direccion != 1) {
+        //if ($num_direccion != 1) {
         	$this->alumno_model->actualizar_datos_alumno($usuario,$correo,$telefono,$celular);
-        	$this->alumno_model->actualizar_direccion_alumno($num_direccion,$vialidad,$exterior,$interior,$cp,$localidad);
+        /*	$this->alumno_model->actualizar_direccion_alumno($num_direccion,$vialidad,$exterior,$interior,$cp,$localidad);
         } else {
         	$data['dir'] = $this->alumno_model->crear_direccion_alumno($vialidad,$exterior,$interior,$cp,$localidad,$municipio);
         	//var_dump($data['dir']);
         	$this->alumno_model->actualizar_datos_alumno($usuario,$correo,$telefono,$celular);
-        }
+        }*/
         
 	}
 

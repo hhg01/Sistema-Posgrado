@@ -12,13 +12,13 @@
 			width: 150px;
 		}
 		.new_color{
-			background-color: #338135;
+			background-color: #035887;
 		}
 		.card_color{
-			background-color: #b2fac7;
+			background-color: #c4e9fe;
 		}
 		.button_color{
-			background-color: #FFAB00;
+			background-color: #035887;
 		}
 	</style>
 </head>
@@ -61,11 +61,11 @@
 		  										</tr>
 											</thead>
 <tbody>
-	<tr>
+	<!--<tr>
 	    <td id="mi_email" type="text"><?php echo $profesor_info_personal[0]["email"];?></td>
 	    <td type="text">-></td>
 	    <td id="nuevo_email" type="text"></td>
-	</tr>
+	</tr>-->
 	<tr>
 	    <td id="mi_telefono" type="text"><?php echo $profesor_info_personal[0]["telefono"];?></td>
 	    <td type="text">-></td>
@@ -106,7 +106,7 @@
 									</div>
 								</div>
 						    </div>
-						    <div class="modal-footer new_color">
+						    <div class="modal-footer blue-grey darken-1">
 						      	<a onclick="document.getElementById('modal1').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
 						      	<a class="modal-close btn-flat white-text" onclick="guardar_info()">Aceptar</a>
 						    </div>
@@ -236,7 +236,7 @@
 	<br>
 	<a class="btn-floating btn-medium waves-effect waves-light button_color"><i class="material-icons" onclick="regresar()">reply</i></a>
 	<br><br>
-	<a class="btn-floating btn-medium button_color"><i class="material-icons" onclick="document.getElementById('modal1').style.display='block'">archive</i></a>
+	<a class="btn-floating btn-medium button_color"><i class="material-icons" onclick="cargar_info_modal()">archive</i></a>
 </div>
 
 <script src="<?= base_url()?>assets/js/jquery.min.js"></script>
@@ -244,17 +244,16 @@
 <script>
 
 function cargar_info_modal() {
-	var email = document.getElementById('correo_electronico').value;
+	//var email = document.getElementById('correo_electronico').value;
 	var telefono = document.getElementById('telefono').value;
 	var celular = document.getElementById('celular').value;
-	console.log(email);
 	//var vialidad = document.getElementById('vialidad').value;;
 	//var exterior = document.getElementById('exterior').value;;
 	//var interior = document.getElementById('interior').value;;
 	//var cp = document.getElementById('cp').value;;
 	//var localidad = document.getElementById('localidad').value;;
 
-	var email_bd = '<?php echo $profesor_info_personal[0]["email"]?>';
+	//var email_bd = '<?php echo $profesor_info_personal[0]["email"]?>';
 	var telefono_bd = '<?php echo $profesor_info_personal[0]["telefono"]?>';
 	var celular_bd = '<?php echo $profesor_info_personal[0]["celular"]?>';
 	/*var vialidad_bd = '<?php echo $profesor_info_personal[0]["vialidad"]?>';
@@ -263,11 +262,11 @@ function cargar_info_modal() {
 	//var cp_bd = '<?php echo $profesor_info_personal[0]["cp"]?>';
 	//var localidad_bd = '<?php echo $profesor_info_personal[0]["localidad"]?>';*/
 
-	if (email==email_bd && telefono==telefono_bd && celular==celular_bd ){//&& vialidad==vialidad_bd && exterior==exterior_bd && interior==interior_bd && cp==cp_bd && localidad==localidad_bd) {
+	if (telefono==telefono_bd && celular==celular_bd ){//&& vialidad==vialidad_bd && exterior==exterior_bd && interior==interior_bd && cp==cp_bd && localidad==localidad_bd) {
 		alert("No hay cambios por realizar");
 		
 	} else {
-		document.getElementById("nuevo_email").innerHTML = email;
+		//document.getElementById("nuevo_email").innerHTML = email;
 		document.getElementById("nuevo_telefono").innerHTML = telefono;
 		document.getElementById("nuevo_celular").innerHTML = celular;
 		/*document.getElementById("nuevo_vialidad").innerHTML = vialidad;
@@ -281,7 +280,6 @@ function cargar_info_modal() {
 }
 
 function guardar_info() {
-	alert("update()");
 	var usuario = <?php echo $profesor_info_personal[0]["id_user"]?>;
 	//var id_direccion = //<?php //echo $profesor_info_personal[0]["id_direccion"]?>;
 	var email = document.getElementById('correo_electronico').value;
@@ -301,7 +299,7 @@ function guardar_info() {
       	success: function(data) {
       		document.getElementById('modal1').style.display='none';
         	alert("cambio efectuado");
-        	//$('#infoAlumno').replaceWith(data);
+        	//$('#datosPersonales').replaceWith(data);
         },
       	error: function (xhr, ajaxOptions, thrownError) {
             document.getElementById('modal1').style.display='none';

@@ -29,7 +29,7 @@ class Profesor_model extends CI_Model{
 	}
 
 	function obtener_tutorados($economico){
-  		$custom_query = "SELECT U.id_user, U.apellido_paterno, U.apellido_materno, U.nombres, S.matricula, S.nivel, S.id_posgraduate FROM STUDENTS AS S INNER JOIN USERS AS U ON S.id_user = U.id_user INNER JOIN TUTORS AS T ON T.id_student = S.id_student INNER JOIN TEACHERS AS Tc ON T.id_teacher = Tc.id_teacher WHERE Tc.no_economico=".$economico;
+  		$custom_query = "SELECT U.id_user, U.apellido_paterno, U.apellido_materno, U.nombres, U.email, S.matricula, S.nivel, S.id_posgraduate FROM STUDENTS AS S INNER JOIN USERS AS U ON S.id_user = U.id_user INNER JOIN TUTORS AS T ON T.id_student = S.id_student INNER JOIN TEACHERS AS Tc ON T.id_teacher = Tc.id_teacher WHERE Tc.no_economico=".$economico;
   		$respuesta_query = $this->db->query($custom_query);
 
   		if ($respuesta_query->num_rows() > 0) {
@@ -51,7 +51,7 @@ class Profesor_model extends CI_Model{
  	}
 
  	function obtener_horarios($matricula){
- 		$custom_query = "SELECT st.matricula, us.apellido_paterno, us.apellido_materno, us.nombres, u.clave_uea, u.nombre, u.creditos FROM STUDENTS AS st JOIN REQUESTS AS re on st.id_student=re.id_student JOIN PLANNING AS pl on re.id_planning=pl.id_planning JOIN UEAS as u on pl.id_uea=u.clave_uea JOIN USERS AS us on st.id_user=us.id_user WHERE st.matricula=".$matricula;
+ 		$custom_query = "SELECT st.id_student, st.matricula, us.apellido_paterno, us.apellido_materno, us.nombres, u.clave_uea, u.nombre, u.creditos FROM STUDENTS AS st JOIN REQUESTS AS re on st.id_student=re.id_student JOIN PLANNING AS pl on re.id_planning=pl.id_planning JOIN UEAS as u on pl.id_uea=u.clave_uea JOIN USERS AS us on st.id_user=us.id_user WHERE st.matricula=".$matricula;
  		$respuesta_query = $this->db->query($custom_query);
 
   		if ($respuesta_query->num_rows() > 0) {
@@ -59,6 +59,27 @@ class Profesor_model extends CI_Model{
   		} else {
    			return $respuesta_query=NULL;
   		}
+ 	}
+
+ 	function actualizar_datos_profesor($usuario,$correo,$telefono,$celular){
+ 		$custom_query = "UPDATE USERS set telefono=".$telefono.", celular=".$celular." where id_user=".$usuario.";";
+		$respuesta_query = $this->db->query($custom_query);
+
+		return $respuesta_query;
+ 	}
+
+ 	function confirmar_ueas($id_student){
+ 		$custom_query = "UPDATE REQUESTS SET estado_request=2 WHERE id_student=".$id_student;
+		$respuesta_query = $this->db->query($custom_query);
+
+		return $respuesta_query;
+ 	}
+
+ 	function cancelar_ueas($id_student){
+ 		$custom_query = "DELETE FROM REQUESTS WHERE id_student=".$id_student;
+		$respuesta_query = $this->db->query($custom_query);
+
+		return $respuesta_query;
  	}
 }
 
