@@ -104,10 +104,10 @@ class Alumno extends CI_Controller {
         $titulo = "Confirmación de horario del alumno ".$matricula;
         $encabezado = 'From: sistema_posgrado@xanum.uam.mx'."\r\n".'X-Mailer: PHP/'.phpversion();
         $encabezado.='Content-type:text/html;charset=UTF-8';
-        $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido el siguiente horario:."\r\n"
-            Clave"."\t"."Nombre UEA"."\t\t\t"."Créditos";
+        $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido el siguiente horario:"."\r\n".
+            "Clave"."\t\t"."Créditos"."\t\t"."Nombre UEA"."\r\n";
         foreach ($horario as $uea) {
-            $contenido.=$uea['clave_uea']."\t".$uea['nombre']."\t".$uea['creditos']."\r\n";
+            $contenido.=$uea['clave_uea']."\t\t".$uea['creditos']."\t\t".$uea['nombre']."\r\n";
         }
         ini_set("display_errors", 1);
         //error_reporting(E_ALL);
