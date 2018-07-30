@@ -263,8 +263,8 @@ function inscripcion_blanco() {
 		success: function(data) {
       		alert("Información enviada. Espera respuesta");
 			//document.getElementById('modal1').style.display='none';
-			console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
-			console.log(data);
+			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
+			//console.log(data);
 			//document.getElementById("aceptar").disabled = true
       	},
       	error: function (xhr, ajaxOptions, thrownError) {
