@@ -105,7 +105,17 @@
 		  								</table>
 									</div>
 								</div>
+								<div class="row">
+						    		<div class="col s12 m12 l12">
+						    			<br><br>
+						    			<p>Porfavor introduce tu correo electrónico para confirmar</p>
+						    			<div class="container">
+						    				<input type="email" name="correo" id="correo">
+						    			</div>
+						    		</div>
+						    	</div>
 						    </div>
+						    
 						    <div class="modal-footer blue-grey darken-1">
 						      	<a onclick="document.getElementById('modal1').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
 						      	<a class="modal-close btn-flat white-text" onclick="guardar_info()">Aceptar</a>
@@ -218,7 +228,7 @@
 						</p>
 						<p>
 							Para actualizar los datos solamente escribe sobre ellos y da click sobre el botón
-							<a class="btn-floating btn-medium button_color"><i class="material-icons">archive</i></a> para confirmar el cambio.
+							<a class="btn-floating btn-medium button_color"><i class="material-icons">archive</i></a>. Para confirmar el cambio se te pedirá que ingreses tu correo electrónico.
 							<br>
 							Si no has cambiado tus datos y presionas el botón aparecerá un mensaje de "No hay cambios por realizar".
 						</p>
@@ -290,10 +300,12 @@ function info_academica(){
         url: "<?= base_url()?>index.php/Alumno/obtener_informacion_academica",
         data: datos,
         success: function(data) {
+
 	        $('#infoAlumno').replaceWith(data);
+	        //console.log(data);
         },
       	error: function (xhr, ajaxOptions, thrownError) {
-        	alert('No se encontraron datos');
+        	alert('No se encontraron datos, xdxdxdxdxdxd');
         }
     });
 }
@@ -315,7 +327,7 @@ function inscripcion() {
 function guardar_info() {
 	var usuario = <?php echo $alumno_info_personal[0]["id_user"]?>;
 	//var id_direccion = <?php echo $alumno_info_personal[0]["id_direccion"]?>;
-	//var email = document.getElementById('correo_electronico').value;
+	var correo = document.getElementById('correo').value;
 	var telefono = document.getElementById('telefono').value;
 	var celular = document.getElementById('celular').value;
 	/*var vialidad = document.getElementById('vialidad').value;
@@ -325,28 +337,26 @@ function guardar_info() {
 	var localidad = document.getElementById('localidad').value;
 	var estado = document.getElementById('estados').value;
 	var municipio = document.getElementById('municipios').value;*/
-	datos_alumno = {"usuario":usuario, "telefono":telefono, "celular":celular}//, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad, "municipio":municipio, "estado":estado, "id_direccion":id_direccion};
+	datos_alumno = {"usuario":usuario, "telefono":telefono, "celular":celular, "correo":correo}//, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad, "municipio":municipio, "estado":estado, "id_direccion":id_direccion};
 
-	$.ajax({
-    	type: "POST",
-    	url: "<?= base_url()?>index.php/Alumno/guardar_info_alumno",
-    	data: datos_alumno,
-      	success: function(data) {
-      		document.getElementById('modal1').style.display='none';
-        	alert("cambio efectuado");
-        	console.log(data);
-        	//$('#infoAlumno').replaceWith(data);
-        },
-      	error: function (xhr, ajaxOptions, thrownError) {
-            document.getElementById('modal1').style.display='none';
-            alert('No puede haber campos vacios');
-            console.log(ajaxOptions);
-            console.log(thrownError);
-        },
-        complete: function(xhr, estado){
-        	console.log(datos_alumno);
-        }
-    });
+	if(correo == ''){
+		alert('Es necesario que escribas tu correo para confirmar los camibos');
+	} else {
+			$.ajax({
+				type: "POST",
+				url: "<?= base_url()?>index.php/Alumno/guardar_info_alumno",
+				data: datos_alumno,
+				success: function(data) {
+					document.getElementById('modal1').style.display='none';
+					alert("cambio efectuado");
+	        	//$('#infoAlumno').replaceWith(data);
+	        },
+	        error: function (xhr, ajaxOptions, thrownError) {
+	        	document.getElementById('modal1').style.display='none';
+	        	alert('No puede haber campos vacios');
+	        }
+	    });
+	}
 }
 
 /*function recupera_estados(){
