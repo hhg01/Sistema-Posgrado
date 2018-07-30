@@ -62,9 +62,11 @@ class Profesor_model extends CI_Model{
  	}
 
  	function actualizar_datos_profesor($usuario,$correo,$telefono,$celular){
- 		$custom_query = "UPDATE USERS set telefono=".$telefono.", celular=".$celular." where id_user=".$usuario.";";
+ 		$custom_query = "UPDATE USERS set telefono ='".$telefono."', celular='".$celular."' where id_user=".$usuario." AND email='".$correo."';";
+        var_dump($custom_query);
 		$respuesta_query = $this->db->query($custom_query);
 
+		//return "Hola, ya actualizamos tus datos";
 		return $respuesta_query;
  	}
 
