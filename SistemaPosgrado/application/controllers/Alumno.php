@@ -104,43 +104,20 @@ class Alumno extends CI_Controller {
         $titulo = "Confirmación de horario del alumno ".$matricula;
         $encabezado = 'From: sistema_posgrado@xanum.uam.mx'."\r\n".'X-Mailer: PHP/'.phpversion();
         $encabezado.='Content-type:text/html;charset=UTF-8';
-        $contenido = "</<!DOCTYPE html>
-                    <html>
-                    <head><title></title></head>
-                    <body>
-                        <p>
-                        El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido el siguiente horario:
-                        </p>
-                        <div>
-                            <table>
-                                <thead>
-                                    <th>Clave</th>
-                                    <th>Nombre UEA</th>
-                                    <th>Créditos</th>
-                                </thead>
-                                <tbody>";
-                                    foreach ($horario as $uea) {
-                                        $contenido.="<tr>
-                                                <td>".$uea['clave_uea']."</td>
-                                                <td>".$uea['nombre']."</td>
-                                                <td>".$uea['creditos']."</td>
-                                            </tr>";
-                                    }
-                                $contenido.="</tbody>
-                            </table>
-                        </div>
-                        <p>
-                            Ingresa a <a href='LINK DEL SISTEMA'>la pagina del sismeta</a> Para confirmar o cancelar las opciones de este alumno.
-                        </p>
-                    </body>
-                    </html>";
+        $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido el siguiente horario:."\r\n"
+            Clave"."\t"."Nombre UEA"."\t\t\t"."Créditos";
+        foreach ($horario as $uea) {
+            $contenido.=$uea['clave_uea']."\t".$uea['nombre']."\t".$uea['creditos']."\r\n";
+        }
         ini_set("display_errors", 1);
         //error_reporting(E_ALL);
         $envio = mail($correo[0]['email'], $titulo, $contenido, $encabezado);
         if($envio == 1){
             echo "El mensaje se ha enviado correctamente";
+            var_dump("El mensaje se envió correctamente");
         } else {
             $echoError .= "El correo no se pudo envíar correctamente, favor de intentar nuevamente.";
+             var_dump("Hubo un error al enviar el mensaje");
         }
         //var_dump($correo[0]['email']);FALTA VERIFICAR QUE SÍ ESTE ENVIANDO EL MENSAJE
 
