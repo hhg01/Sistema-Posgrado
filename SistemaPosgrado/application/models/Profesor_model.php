@@ -7,7 +7,7 @@ class Profesor_model extends CI_Model{
 	}
 
 	function obtener_profesor($economico,$contraseña){
-		$custom_query = "SELECT te.no_economico, apellido_paterno, apellido_materno, nombres, se.password FROM USERS AS us JOIN TEACHERS AS te on us.id_user=te.id_user JOIN SESSIONS AS se on us.id_user=se.id_user WHERE te.no_economico=".$economico." AND se.password=".$contraseña;
+		$custom_query = "SELECT te.no_economico, apellido_paterno, apellido_materno, nombres, se.password, se.bandera FROM USERS AS us JOIN TEACHERS AS te on us.id_user=te.id_user JOIN SESSIONS AS se on us.id_user=se.id_user WHERE te.no_economico=".$economico." AND se.password=".$contraseña;//md5($contraseña);
 		$respuesta_query = $this->db->query($custom_query);
 
 		if ($respuesta_query->num_rows() > 0) {
@@ -83,5 +83,12 @@ class Profesor_model extends CI_Model{
 
 		return $respuesta_query;
  	}
+
+	function cambiar_contrasena($nueva_contrasena, $economico){
+		$custom_query = "UPDATE SESSIONS SET password= ".$nueva_contrasena.", bandera =1 WHERE id_user=(SELECT u.id_user FROM TEACHERS AS t INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE t.no_economico = ".$economico.")";
+		$respuesta_query = $this->db->query($custom_query);
+		return $respuesta_query;
+
+	}
 }
 

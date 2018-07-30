@@ -27,7 +27,7 @@ class Alumno extends CI_Controller {
         if ($data['alumno_info_academica'] != NULL) {
             $this->load->view('Alumno/info_academica',$data);
         } else {
-            $this->response(array("code" => 204, "response" => "No se encontraron datos"));
+            $this->response(array("code" => 204, "response" => "No se encontraron datos segunda version"));
         }
     }
 
@@ -67,58 +67,77 @@ class Alumno extends CI_Controller {
         //}
         
     }
+
     function agregar_horario(){
         $ueas=$this->input->post('ueas');
         $data = $this->input->post('datos');
         $matricula=$data['matricula'];
         $contrasena=$data['0'];
-        
         $i=0;
         foreach ($ueas as $uea) {
             $planeaciones[$i]=$this->alumno_model->obtener_planeacion($uea['Clave']);
             $i++;
         }
-        foreach ($planeaciones as $planeacion) {
-            $this->alumno_model->agregar_a_horario($planeacion[0]['id_planning'],$matricula);
+        if($this->enviar_correo_confirmacion($matricula, $contrasena, $ueas)==1){//Para verificar si es la uea blanca
+            foreach ($planeaciones as $planeacion) {
+                $this->alumno_model->agregar_a_horario($planeacion[0]['id_planning'],$matricula);
+            }
+
+            echo "El mensaje se ha enviado correctamente";
+            var_dump("El mensaje se envió correctamente");
+        } else {
+            echo "Hubo un error al enviar el correo.";
         }
-        $this->enviar_correo_confirmacion($matricula, $contrasena);
+        
     }
 
     function agregar_uea_blanco(){
         $data = $this->input->post('datos');
         $matricula=$data['matricula'];
         $contrasena=$data['0'];
+
+        //Un arreglo que se le parezca al arreglo donde se guardan todas las materiasi
+        $lista= array('Clave'=>1111, 'Nombre'=>'UEA en blanco', 'Creditos'=>0 );
+        $ueas=array();
+        $ueas[0]=$lista;
         $id_blanco = $this->alumno_model->obtener_planeacion(0);
-        $this->alumno_model->agregar_a_horario($id_blanco[0]['id_uea'],$matricula);//0 porque el id de la uea en blanco es 0
-        $this->enviar_correo_confirmacion($matricula, $contrasena);
+        if($this->enviar_correo_confirmacion($matricula, $contrasena, $ueas)==1){
+           $this->alumno_model->agregar_a_horario($id_blanco[0]['id_uea'],$matricula);//0 porque el id de la uea en blanco es 0
+
+            echo "El mensaje se ha enviado correctamente";
+        } else {
+            echo "Hubo un error al enviar el correo.";
+        }
+        
     }
 
-    function enviar_correo_confirmacion($matricula, $contrasena){
+    function enviar_correo_confirmacion($matricula, $contrasena, $ueas){
         $correo = $this->alumno_model->obtener_correo_responsable($matricula);
-        //Envío del mensaje
         $datos = $this->alumno_model->obtener_datos_alumno($matricula,$contrasena);
-        $horario = $this->alumno_model->obtener_horario($matricula);
-
         $titulo = "Confirmación de horario del alumno ".$matricula;
         $encabezado = 'From: sistema_posgrado@xanum.uam.mx'."\r\n".'X-Mailer: PHP/'.phpversion();
         $encabezado.='Content-type:text/html;charset=UTF-8';
-        $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido el siguiente horario:"."\r\n".
+
+
+        //Si el id de la primer uea que encuentra es la blanca, solo indica que se inscribió en blanco
+        if($ueas[0]['Clave'] == 1111){
+            $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha escogido inscribirse en blanco.";      
+        } else {
+            $contenido = "El alumno ".$datos[0]['apellido_paterno']." ".$datos[0]['apellido_materno']." ".$datos[0]['nombres']." ha agregado las siguientes UEAs:"."\r\n".
             "Clave"."\t\t"."Créditos"."\t\t"."Nombre UEA"."\r\n";
-        foreach ($horario as $uea) {
-            $contenido.=$uea['clave_uea']."\t\t".$uea['creditos']."\t\t".$uea['nombre']."\r\n";
+            foreach ($ueas as $uea) {
+                $contenido.=$uea['Clave']."\t\t".$uea['Creditos']."\t\t".$uea['Nombre']."\r\n";
+            }
         }
+        
         ini_set("display_errors", 1);
         $envio = mail($correo[0]['email'], $titulo, $contenido, $encabezado);
         if($envio == 1){
-            echo "El mensaje se ha enviado correctamente";
-            //var_dump("El mensaje se envió correctamente");
+            return 1;
         } else {
             $echoError .= "El correo no se pudo envíar correctamente, favor de intentar nuevamente.";
-             //var_dump("Hubo un error al enviar el mensaje");
+             return 0;
         }
-        //var_dump($correo[0]['email']);FALTA VERIFICAR QUE SÍ ESTE ENVIANDO EL MENSAJE
-
-
     }
 
    /* function regresa_estados(){

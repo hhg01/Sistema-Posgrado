@@ -7,7 +7,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function obtener_datos_alumno($matricula,$contraseña){
-		$custom_query = "SELECT u.id_user, apellido_paterno, apellido_materno, nombres, email, telefono, celular, fecha_nacimiento, nacionalidad, genero, u.id_direccion, di.vialidad, di.exterior, di.interior, di.cp, di.localidad, di.id_municipio, s.matricula, s.nivel, se.password FROM USERS AS u JOIN STUDENTS AS s on u.id_user=s.id_user JOIN SESSIONS AS se on u.id_user=se.id_user JOIN ADDRESSES AS di ON u.id_direccion=di.id_direccion WHERE s.matricula=".$matricula." AND se.password=".$contraseña;
+		$custom_query = "SELECT u.id_user, apellido_paterno, apellido_materno, nombres, email, telefono, celular, fecha_nacimiento, nacionalidad, genero, u.id_direccion, di.vialidad, di.exterior, di.interior, di.cp, di.localidad, di.id_municipio, s.matricula, s.nivel, se.password FROM USERS AS u JOIN STUDENTS AS s on u.id_user=s.id_user JOIN SESSIONS AS se on u.id_user=se.id_user JOIN ADDRESSES AS di ON u.id_direccion=di.id_direccion WHERE s.matricula=".$matricula." AND se.password=".$contraseña;//md5($contraseña);
 		$respuesta_query = $this->db->query($custom_query);
 
 		if ($respuesta_query->num_rows() > 0) {
@@ -58,29 +58,22 @@ class Alumno_model extends CI_Model{
 	}
 
 	function agregar_a_horario($clave_plan,$matricula){
-		$custom_query = "INSERT INTO REQUESTS(id_student, id_planning, estado_request) SELECT id_student, ".$clave_plan.", 1 FROM STUDENTS WHERE matricula = ".$matricula;
+		$custom_query = "INSERT INTO `requests`(`id_student`, `id_planning`, `estado_request`) SELECT id_student, ".$clave_plan.", 0 FROM STUDENTS WHERE matricula = ".$matricula;
 		$respuesta_query = $this->db->query($custom_query);
 		return $respuesta_query;
 	}
 
 	function obtener_correo_responsable($matricula){
-		$custom_query = "SELECT u.email FROM STUDENTS AS s INNER JOIN PROYECTS AS p ON s.id_student = p.id_student INNER JOIN RESPONSIBLE AS r ON p.id_proyect = r.id_proyect INNER JOIN TEACHERS AS t ON r.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
+		$custom_query = "SELECT u.email FROM students s INNER JOIN PROYECTS AS p ON s.id_student = p.id_student INNER JOIN RESPONSIBLE AS r ON p.id_proyect = r.id_proyect INNER JOIN TEACHERS AS t ON r.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
 
 		$respuesta_query = $this->db->query($custom_query);
     	
 		if($respuesta_query->num_rows()==0){
 			//El alumno no tiene asesor
-			$custom_query = "SELECT u.email FROM STUDENTS s INNER JOIN TUTORS AS tu ON s.id_student = tu.id_student INNER JOIN TEACHERS AS t ON tu.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
+			$custom_query = "SELECT u.email FROM students s INNER JOIN TUTORS AS tu ON s.id_student = tu.id_student INNER JOIN TEACHERS AS t ON tu.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
 
 			$respuesta_query = $this->db->query($custom_query);
 		}
-		return $respuesta_query->result_array();
-	}
-
-	function obtener_horario($matricula){
-		$custom_query = "SELECT u.clave_uea, u.nombre, u.creditos FROM STUDENTS AS s INNER JOIN REQUESTS AS r ON s.id_student = r.id_student INNER JOIN PLANNING AS p ON r.id_planning = p.id_planning INNER JOIN UEAS AS u ON p.id_uea = u.clave_uea WHERE s.matricula = ".$matricula;
-		$respuesta_query = $this->db->query($custom_query);
-		//var_dump($respuesta_query->result_array())
 		return $respuesta_query->result_array();
 	}
 	

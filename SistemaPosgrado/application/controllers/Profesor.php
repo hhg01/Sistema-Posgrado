@@ -201,4 +201,11 @@ class Profesor extends CI_Controller {
 			$this->response(array("code" => 204, "response" => "No se encontraron datos"));
 		}
 	}
+
+	public function cambiar_contrasena(){
+		$nueva_contrasena = $this->input->post('contrasena_nueva');
+		$datos_prof = $this->input->post('datosProf');
+		//var_dump($datos_prof);
+		$this->profesor_model->cambiar_contrasena($nueva_contrasena, $datos_prof['economico']);
+	}
 }

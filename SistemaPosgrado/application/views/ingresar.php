@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="col s12 m1 l1"></div>
 			<div class="col s12 m3 l3">
-				<a style="display:block" href="<?= base_url()?>index.php/Ingresar/ingresar_alumno">
+				<a style="display:block" href="http://localhost:8080/SistemaPosgrado/index.php/Ingresar/ingresar_alumno">
 		        	<div class="card fondo hoverable">
 		          		<div class="card-content">
 		          			<div class="container">
@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	      	</div>
 	      	<div class="col s12 m4 l4"></div>
 	      	<div class="col s12 m3 l3">
-	      		<a style="display:block" href="<?= base_url()?>index.php/Ingresar/ingresar_profesor">
+	      		<a style="display:block" href="http://localhost:8080/SistemaPosgrado/index.php/Ingresar/ingresar_profesor">
 		        	<div class="card efect fondo hoverable">
 		          		<div class="card-content">
 		          			<div class="container">

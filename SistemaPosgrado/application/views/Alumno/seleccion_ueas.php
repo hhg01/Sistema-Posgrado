@@ -129,6 +129,24 @@
 									      	<a onclick="enviar_confirmacion()" class="modal-close btn-flat white-text">Aceptar</a>
 									    </div>
 									</div>
+									<!-- <div id="modal2" class="modal modal-fixed-footer">
+									    <div class="modal-content">
+									      	<p><h5>Cambio de correo electrónico</h5></p>
+									      	<div class="container">
+										      	<div class="row">
+										      		<div class="col s12 ">
+										      			<label>
+										      				<h6>Introduce tu correo electrónico para confirmar</h6>
+										      				<input type="password" name="correo_actual" id="correo_actual" style="border: none" value="">
+										      		</div>
+												</div>
+											</div>
+									    </div>
+									    <div class="modal-footer blue-grey darken-1">
+									      	<a onclick="document.getElementById('modal2').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
+									      	<a class="modal-close btn-flat white-text" onclick="enviar_correo()">Aceptar</a>
+									    </div>
+									</div> -->
 
 <?php echo 
 '<div class="responsive-table table-status-sheet">
@@ -141,7 +159,7 @@
 	  			</tr>
 			</thead>';
 	  		foreach ($ueas as &$uea) {
-	    		if ($uea['clave_uea'] != 1111) {
+	    		if ($uea['clave_uea'] != 0) {
 	    			echo
 			    	'<tbody>
 			      		<tr id="clave'.$uea["clave_uea"].'">
@@ -244,10 +262,6 @@ function enviar_confirmacion() {
       	success: function(data) {
       		alert("Información enviada. Espera respuesta");
 			document.getElementById('modal1').style.display='none';
-			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
-			//console.log(data);
-			//document.getElementById("aceptar").disabled = true;
-      		//$('#infoUeas').replaceWith(data);
       	},
       	error: function (xhr, ajaxOptions, thrownError) {
         	alert('Error al enviar la información');
@@ -256,16 +270,15 @@ function enviar_confirmacion() {
 }
 
 function inscripcion_blanco() {
+	//alert("insert() y send_email()");
 	$.ajax({
 		type: "POST",
 		url: "<?= base_url()?>index.php/Alumno/agregar_uea_blanco",
 		data: {"datos":datos},
 		success: function(data) {
       		alert("Información enviada. Espera respuesta");
-			document.getElementById('modal1').style.display='none';
-			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
-			//console.log(data);
-			//document.getElementById("aceptar").disabled = true
+			console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
+			console.log(data);
       	},
       	error: function (xhr, ajaxOptions, thrownError) {
         	alert('Error al enviar la información');

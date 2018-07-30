@@ -46,6 +46,7 @@
 			<div class="col s12 m3 l3">
 	        	<div class="card efect card_color" onclick="tutorados()">
 	          		<div class="card-content">
+
 	          			<div class="container">
 	          				<img class="responsive-img" src="<?= base_url()?>assets/imag/teamwork.png">
 	          				<span class="card-title black-text text-lighten-5" style="text-align: center">Tutorados</span>
@@ -88,7 +89,43 @@
 	          		</div>
 	        	</div>
 	      	</div>
+
+	      	<?php 
+	      		if ($profesor[0]['bandera'] == 0) {
+	      			echo'
+	      	<div id="modal2" class="modal modal-fixed-footer" style="display: block">
+				<div class="modal-content">
+					<p><h5>Cambio de contraseña</h5></p>
+					<div class="container">
+						<div class="row">
+							<p>Por motivos de seguridad, es necesario que cambies tu contraseña</p>
+							<div class="col s12 ">
+							    <label>
+							    	<h6>Introduce la contraseña anterior</h6>
+							      	<input type="password" name="contrasena_actual" id="contrasena_actual" style="border: none" value="">
+							    </label>
+							    <label>
+							      	<h6>Introduce la nueva contraseña</h6>
+							      	<input type="password" name="contrasena_nueva_confirm" id="contrasena_nueva_confirm" style="border: none" value="">
+							    </label>
+							     <label>
+							      	<h6>Confirma la nueva contraseña</h6>
+							      	<input type="password" name="contrasena_nueva" id="contrasena_nueva" style="border: none" value="">
+							    </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer blue-grey darken-1">
+					<a class="modal-close btn-flat white-text" onclick="guardar_contrasena()">Aceptar</a>
+				</div>
+			</div>';
+	      		}
+			?>
+
+
 		</div>
+
 		<div class="row">
 			<div class="col s12 m12 l12 black-text" style="background-color: #ffffff">
 				<h5>¿Necesitas ayuda?</h5>
@@ -106,7 +143,6 @@
 	</div>
 
 </div>
-
 
 <script src="<?= base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
@@ -173,6 +209,40 @@ function confirmar() {
             alert('Error de conexión');
         }
     });
+}
+
+function guardar_contrasena(){
+	var contrasena_actual = document.getElementById('contrasena_actual').value,
+		contrasena_nueva = document.getElementById('contrasena_nueva').value,
+		contrasena_nueva_confirm = document.getElementById('contrasena_nueva_confirm').value;
+		if(contrasena_actual != <?php echo $profesor[0]['password'];?>){
+			alert("La contraseña actual no coincide con la que tienes registrada");
+		} else if(contrasena_nueva == <?php echo $profesor[0]['password'];?> || contrasena_actual == '' || contrasena_nueva == ''){
+			alert("Introduce una contraseña nueva");
+		} else if(contrasena_nueva != contrasena_nueva_confirm){
+			alert("Los campos de nueva contraseña y nueva confirmación");
+		} else {
+			$.ajax({
+				type: "POST",
+    			url: "<?= base_url()?>index.php/Profesor/cambiar_contrasena",
+    			data: {"contrasena_nueva": contrasena_nueva, "datosProf": datosProf},
+      			success: function(data) {
+        			alert("Tu contraseña ha sido cambiada");
+        			console.log(data);
+        		},
+      			error: function (xhr, ajaxOptions, thrownError) {
+            		alert('Error de conexión');
+       		}
+			});
+			document.getElementById('modal2').style.display='none';
+
+			 
+			//	$mensaje = '<p>¡Hola! Has hecho una solicitud para cambiar tu contraseña.</p>
+			//				<p>Tu nueva contraseña es: '.contrasena_nueva.'</p>'
+			//	mail($alumno_info_personal[0]['email'], "Actualización de contraseña", message);
+			
+		}
+
 }
 </script>
 </body>
