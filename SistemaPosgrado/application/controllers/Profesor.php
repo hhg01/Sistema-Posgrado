@@ -92,8 +92,25 @@ class Profesor extends CI_Controller {
         $correo = $this->input->post('correo');
         $telefono = $this->input->post('telefono');
         $celular = $this->input->post('celular');
-
-        $this->profesor_model->actualizar_datos_profesor($usuario,$correo,$telefono,$celular);
+        /*$num_direccion = $this->input->post('id_direccion');
+        $vialidad = $this->input->post('vialidad');
+        $exterior = $this->input->post('exterior');
+        $interior = $this->input->post('interior');
+        $cp = $this->input->post('cp');
+        $localidad = $this->input->post('localidad');
+        $estado = $this->input->post('estado');
+        $municipio = $this->input->post('municipio');*/
+        
+       // if ($num_direccion != 1) {
+            var_dump("El id no es 1");
+        $this->alumno_model->actualizar_datos_profesor($usuario,$telefono,$celular,$correo);
+            //$this->alumno_model->actualizar_direccion_alumno($num_direccion,$vialidad,$exterior,$interior,$cp,$localidad);
+        //} else {
+          //  var_dump("El id es 1");
+            //$data['dir'] = $this->alumno_model->crear_direccion_alumno($vialidad,$exterior,$interior,$cp,$localidad,$municipio);
+            //$this->alumno_model->actualizar_datos_alumno($usuario,$correo,$telefono,$celular);
+           // $this->alumno_model->actualizar_direccion_alumno($num_direccion,$vialidad,$exterior,$interior,$cp,$localidad);
+        //}
 	}
 
 	public function confirmar_email(){
