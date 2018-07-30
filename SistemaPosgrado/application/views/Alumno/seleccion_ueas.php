@@ -177,6 +177,8 @@
 						Para seleccionar una UEA solamente marca el recuadro "Agregar".
 						<br>
 						Una vez que hayas escogido las de tu interés presiona en el botón "Confirmar".
+						<br>
+						Si deseas inscribirte en blanco, presiona el botón "En blanco".
 					</p>
 				</blockquote>
 			</div>
@@ -263,8 +265,8 @@ function inscripcion_blanco() {
 		success: function(data) {
       		alert("Información enviada. Espera respuesta");
 			//document.getElementById('modal1').style.display='none';
-			console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
-			console.log(data);
+			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
+			//console.log(data);
 			//document.getElementById("aceptar").disabled = true
       	},
       	error: function (xhr, ajaxOptions, thrownError) {

@@ -66,7 +66,7 @@ class Alumno_model extends CI_Model{
 	}
 
 	function obtener_correo_responsable($matricula){
-		$custom_query = "SELECT u.email FROM students s INNER JOIN PROYECTS AS p ON s.id_student = p.id_student INNER JOIN RESPONSIBLE AS r ON p.id_proyect = r.id_proyect INNER JOIN TEACHERS AS t ON r.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
+		$custom_query = "SELECT u.email FROM STUDENTS AS s INNER JOIN PROYECTS AS p ON s.id_student = p.id_student INNER JOIN RESPONSIBLE AS r ON p.id_proyect = r.id_proyect INNER JOIN TEACHERS AS t ON r.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
 
 		$respuesta_query = $this->db->query($custom_query);
     	
