@@ -67,13 +67,12 @@ class Alumno extends CI_Controller {
         //}
         
     }
-
     function agregar_horario(){
-        $ueas=$_POST['ueas'];
-        //$clave_uea=
+        $ueas=$this->input->post('ueas');
         $data = $this->input->post('datos');
         $matricula=$data['matricula'];
         $contrasena=$data['0'];
+        
         $i=0;
         foreach ($ueas as $uea) {
             $planeaciones[$i]=$this->alumno_model->obtener_planeacion($uea['Clave']);
@@ -95,12 +94,11 @@ class Alumno extends CI_Controller {
     }
 
     function enviar_correo_confirmacion($matricula, $contrasena){
-        var_dump("DENTRO DEL MÉTODO ENIAR CORREO CONFIRMACION");
-        //var_dump($matricula);
         $correo = $this->alumno_model->obtener_correo_responsable($matricula);
         //Envío del mensaje
         $datos = $this->alumno_model->obtener_datos_alumno($matricula,$contrasena);
         $horario = $this->alumno_model->obtener_horario($matricula);
+
         $titulo = "Confirmación de horario del alumno ".$matricula;
         $encabezado = 'From: sistema_posgrado@xanum.uam.mx'."\r\n".'X-Mailer: PHP/'.phpversion();
         $encabezado.='Content-type:text/html;charset=UTF-8';
@@ -110,14 +108,13 @@ class Alumno extends CI_Controller {
             $contenido.=$uea['clave_uea']."\t\t".$uea['creditos']."\t\t".$uea['nombre']."\r\n";
         }
         ini_set("display_errors", 1);
-        //error_reporting(E_ALL);
         $envio = mail($correo[0]['email'], $titulo, $contenido, $encabezado);
         if($envio == 1){
             echo "El mensaje se ha enviado correctamente";
-            var_dump("El mensaje se envió correctamente");
+            //var_dump("El mensaje se envió correctamente");
         } else {
             $echoError .= "El correo no se pudo envíar correctamente, favor de intentar nuevamente.";
-             var_dump("Hubo un error al enviar el mensaje");
+             //var_dump("Hubo un error al enviar el mensaje");
         }
         //var_dump($correo[0]['email']);FALTA VERIFICAR QUE SÍ ESTE ENVIANDO EL MENSAJE
 

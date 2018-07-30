@@ -46,7 +46,7 @@ foreach ($tutorados as $tutorado) {
 	'<div class="col s12 m6 l3">
 		<div class="card card_color lighten-4">
 			<div class="card-image">
-  				<img class="activator responsive-img" src="http://localhost/SistemaPosgrado/assets/imag/man.png">
+  				<img class="activator responsive-img" src="<?= base_url()?>assets/imag/man.png">
   				<a class="btn-floating halfway-fab waves-effect waves-light blue" id="clave'.$tutorado["matricula"].'" onclick="info_alumno('.$tutorado["matricula"].')"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">

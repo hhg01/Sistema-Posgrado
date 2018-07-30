@@ -141,7 +141,7 @@
 	  			</tr>
 			</thead>';
 	  		foreach ($ueas as &$uea) {
-	    		if ($uea['clave_uea'] != 0) {
+	    		if ($uea['clave_uea'] != 1111) {
 	    			echo
 			    	'<tbody>
 			      		<tr id="clave'.$uea["clave_uea"].'">
@@ -237,7 +237,6 @@ function cancelar_uea() {
 }
 
 function enviar_confirmacion() {
-	//alert("insert() y send_email()");
 	$.ajax({
     	type: "POST",
       	url: "<?= base_url()?>index.php/Alumno/agregar_horario",
@@ -257,14 +256,13 @@ function enviar_confirmacion() {
 }
 
 function inscripcion_blanco() {
-	//alert("insert() y send_email()");
 	$.ajax({
 		type: "POST",
 		url: "<?= base_url()?>index.php/Alumno/agregar_uea_blanco",
 		data: {"datos":datos},
 		success: function(data) {
       		alert("Información enviada. Espera respuesta");
-			//document.getElementById('modal1').style.display='none';
+			document.getElementById('modal1').style.display='none';
 			//console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
 			//console.log(data);
 			//document.getElementById("aceptar").disabled = true

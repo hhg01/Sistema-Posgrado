@@ -300,9 +300,7 @@ function info_academica(){
         url: "<?= base_url()?>index.php/Alumno/obtener_informacion_academica",
         data: datos,
         success: function(data) {
-
 	        $('#infoAlumno').replaceWith(data);
-	        //console.log(data);
         },
       	error: function (xhr, ajaxOptions, thrownError) {
         	alert('No se encontraron datos, xdxdxdxdxdxd');
@@ -434,26 +432,6 @@ function validar(){
 function cambiar_contrasena(){
 	document.getElementById('modal2').style.display='block';
 }
-
-function enviar_correo(){
-	var contrasena_actual = document.getElementById('contrasena_actual').value,
-		contrasena_nueva = document.getElementById('contrasena_nueva').value,
-		contrasena_nueva_confirm = document.getElementById('contrasena_nueva_confirm').value;
-		if(contrasena_actual != <?php echo $alumno_info_personal[0]['password'];?>){
-			alert("La contraseña actual no coincide con la que tienes registrada");
-		} else if(contrasena_nueva == <?php echo $alumno_info_personal[0]['password'];?> || contrasena_actual == '' || contrasena_nueva == ''){
-			alert("Introduce una nueva contraseña");
-		} else if(contrasena_nueva != contrasena_nueva_confirm){
-			alert("Los campos de confirmación y nueva contraseña no coinciden");
-		} else {
-			alert("Te enviamos un correo con tu nueva contraseña");
-			document.getElementById('modal2').style.display='none';
-			 
-			//	$mensaje = '<p>¡Hola! Has hecho una solicitud para cambiar tu contraseña.</p>
-			//				<p>Tu nueva contraseña es: '.contrasena_nueva.'</p>'
-			//	mail($alumno_info_personal[0]['email'], "Actualización de contraseña", message);
-			
-		}
 
 }
 */

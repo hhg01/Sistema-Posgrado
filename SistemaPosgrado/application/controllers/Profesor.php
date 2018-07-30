@@ -102,7 +102,7 @@ class Profesor extends CI_Controller {
         $municipio = $this->input->post('municipio');*/
         
        // if ($num_direccion != 1) {
-            var_dump("El id no es 1");
+            //var_dump("El id no es 1");
         $this->alumno_model->actualizar_datos_profesor($usuario,$telefono,$celular,$correo);
             //$this->alumno_model->actualizar_direccion_alumno($num_direccion,$vialidad,$exterior,$interior,$cp,$localidad);
         //} else {
@@ -132,9 +132,41 @@ class Profesor extends CI_Controller {
 			$envio = mail($correo_destino, $titulo, $mensaje, $cabeceras);
 
 			if($envio == 1){
-				$email = '';
+				$data['horarios'] = $this->profesor_model->obtener_horarios($matricula);
+
+				$email = '';//correo del coordinador
 	         	$titulo = 'Mensaje de contacto al Coordinador';
 	         	$contenido = 'EL alumno'.$data['tutorados'][0]['apellido_paterno'].' '.$data['tutorados'][0]['apellido_materno'].' '.$data['tutorados'][0]['nombres'].' ha concluido satisfactoriamente su Preinscripcion';
+	         	$contenido .= '<div class="conteiner">
+							  	<div class="row">
+							    	<div class="col s12 m12 l8 offset-l2">
+							    		<div class="card-content">
+							            	<div class="responsive-table table-status-sheet">
+							              		<table class="bordered">
+							                		<thead>
+							                  			<tr>
+										                    <th data-field="name">Clave</th>
+										                    <th data-field="name">Nombre</th>
+										                    <th data-field="name">Creditos</th>
+							                  			</tr>
+							                		</thead>';
+							                  		foreach ($horarios as $horario) {
+							                    	echo
+							                    	'<tbody>
+							                      		<tr id="clave'.$horario["matricula"].'">
+									                        <td><id="clave" type="text">'.$horario["clave_uea"].'</td>
+									                        <td><id="nombre" type="text">'.$horario["nombre"].'</td>
+									                        <td><id="creditos" type="text">'.$horario["creditos"].'</td>
+							                      		</tr>
+							                    	</tbody>';
+							                  		}
+							              			echo
+							              		'</table>
+							            	</div>
+							    		</div>
+							    	</div>
+							  	</div>
+							</div>';
          		$cabeceras = 'From: sistema_posgrado@xanum.uam.mx' . "\r\n" .'X-Mailer: PHP/' . phpversion();
 
          		$envio = mail($email,$titulo,$contenido,$cabeceras);

@@ -44,7 +44,6 @@ class Alumno_model extends CI_Model{
         var_dump($custom_query);
 		$respuesta_query = $this->db->query($custom_query);
 
-		//return "Hola, ya actualizamos tus datos";
 		return $respuesta_query;
 	}
 
@@ -59,10 +58,9 @@ class Alumno_model extends CI_Model{
 	}
 
 	function agregar_a_horario($clave_plan,$matricula){
-		$custom_query = "INSERT INTO `requests`(`id_student`, `id_planning`, `estado_request`) SELECT id_student, ".$clave_plan.", 0 FROM STUDENTS WHERE matricula = ".$matricula;
+		$custom_query = "INSERT INTO REQUESTS(id_student, id_planning, estado_request) SELECT id_student, ".$clave_plan.", 1 FROM STUDENTS WHERE matricula = ".$matricula;
 		$respuesta_query = $this->db->query($custom_query);
 		return $respuesta_query;
-		//var_dump($custom_query);
 	}
 
 	function obtener_correo_responsable($matricula){
@@ -70,10 +68,9 @@ class Alumno_model extends CI_Model{
 
 		$respuesta_query = $this->db->query($custom_query);
     	
-    	var_dump($respuesta_query->num_rows());
 		if($respuesta_query->num_rows()==0){
-			//var_dump("El alumno no tiene asesor");
-			$custom_query = "SELECT u.email FROM students s INNER JOIN TUTORS AS tu ON s.id_student = tu.id_student INNER JOIN TEACHERS AS t ON tu.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
+			//El alumno no tiene asesor
+			$custom_query = "SELECT u.email FROM STUDENTS s INNER JOIN TUTORS AS tu ON s.id_student = tu.id_student INNER JOIN TEACHERS AS t ON tu.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE s.matricula =".$matricula;
 
 			$respuesta_query = $this->db->query($custom_query);
 		}
