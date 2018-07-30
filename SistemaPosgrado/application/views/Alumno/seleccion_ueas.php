@@ -177,6 +177,8 @@
 						Para seleccionar una UEA solamente marca el recuadro "Agregar".
 						<br>
 						Una vez que hayas escogido las de tu interés presiona en el botón "Confirmar".
+						<br>
+						Si deseas inscribirte en blanco, presiona el botón "En blanco".
 					</p>
 				</blockquote>
 			</div>
