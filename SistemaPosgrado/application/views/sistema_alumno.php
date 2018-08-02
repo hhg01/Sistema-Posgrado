@@ -58,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<a class="waves-effect waves-light btn-large fondo" type="submit" name="action" id="ingresar" onclick="ingresar_alumnos()">Ingresar</a>
 				</div>
 			</div>
+			<a class="waves-effect waves-light btn-large fondo" type="submit" name="action" id="ingresar" href="<?= base_url()?>">Regresar</a>
 		</div>
 	</div>
 </body>
@@ -74,7 +75,7 @@ function ingresar_alumnos(){
 	  	};
 	    $.ajax({
 	    	type: "POST",
-	      	url: "<?= base_url()?>index.php/Alumno/obtener_informacion",
+	      	url: "<?= base_url()?>index.php/Alumno/pasar_a_hash",
 	      	data: datos,
 	      	success: function(data) {
 	      		$('#contenido').replaceWith(data);

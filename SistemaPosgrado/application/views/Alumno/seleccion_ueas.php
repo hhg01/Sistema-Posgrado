@@ -125,28 +125,26 @@
 											</div>
 									    </div>
 									    <div class="modal-footer blue-grey darken-1">
-									      	<a onclick="cancelar_uea()" class="modal-close btn-flat white-text">Cancelar</a>
-									      	<a onclick="enviar_confirmacion()" class="modal-close btn-flat white-text">Aceptar</a>
-									    </div>
+							                <a onclick="cancelar_uea()" class="modal-close btn-flat white-text">Cancelar</a>
+							                <a name = "confirmar" onclick="activar_modal2(this.name)" class="modal-close btn-flat white-text">Aceptar</a>
+							            </div>
 									</div>
-									<!-- <div id="modal2" class="modal modal-fixed-footer">
-									    <div class="modal-content">
-									      	<p><h5>Cambio de correo electrónico</h5></p>
-									      	<div class="container">
-										      	<div class="row">
-										      		<div class="col s12 ">
-										      			<label>
-										      				<h6>Introduce tu correo electrónico para confirmar</h6>
-										      				<input type="password" name="correo_actual" id="correo_actual" style="border: none" value="">
-										      		</div>
-												</div>
-											</div>
-									    </div>
-									    <div class="modal-footer blue-grey darken-1">
-									      	<a onclick="document.getElementById('modal2').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
-									      	<a class="modal-close btn-flat white-text" onclick="enviar_correo()">Aceptar</a>
-									    </div>
-									</div> -->
+
+									<div id="modal2" class="modal modal-fixed-footer" style="height: 40% !important;">
+      <div class="modal-content">
+       <p><h5>Ingresa tu correo para confirmar</h5></p>
+       <div class="container">
+        <label>
+              <input type="text" name="confirmacion" id="confirmacion" style="border: none" value="" placeholder="Correo electrónico">
+        </label>        
+       </div>
+      </div>
+      <div class="modal-footer blue-grey darken-1">
+       <a onclick="document.getElementById('modal2').style.display='none'" class="modal-close btn-flat white-text">Cancelar</a>
+       <a class="modal-close btn-flat white-text" onclick="enviar_confirmacion()">Aceptar</a>
+      </div>
+     </div>
+
 
 <?php echo 
 '<div class="responsive-table table-status-sheet">
@@ -181,7 +179,7 @@
 						</div>
 						<a class="waves-effect waves-light btn-small button_color" type="submit" id="aceptar" onclick="confirmar_uea()">Confirmar</a>
 						<br><br>
-						<a class="waves-effect waves-light btn-small button_color" type="submit" id="aceptar" onclick="inscripcion_blanco()">En Blanco</a>
+						<a class="waves-effect waves-light btn-small button_color" type="submit" name="blanco" id="aceptar" onclick="activar_modal2(this.name)">En Blanco</a>
 						<p>*Esta opción realizará una inscripción en blanco</p>
 					</div>
 				</div>
@@ -215,6 +213,7 @@
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 <script>
 var lista_ueas = new Array();
+var elemnto_select;
 
 function egregar_quitar_uea(id){
 	var checkBox = document.getElementById('caja'+id);
@@ -254,42 +253,61 @@ function cancelar_uea() {
 	document.getElementById('modal1').style.display='none';
 }
 
+function activar_modal2(elemento){
+ elemento_select = elemento;
+ document.getElementById('modal2').style.display='block';
+}
+
 function enviar_confirmacion() {
-	$.ajax({
-    	type: "POST",
-      	url: "<?= base_url()?>index.php/Alumno/agregar_horario",
-      	data: {"datos":datos,"ueas":lista_ueas},
-      	success: function(data) {
-      		alert("Información enviada. Espera respuesta");
-			document.getElementById('modal1').style.display='none';
-      	},
-      	error: function (xhr, ajaxOptions, thrownError) {
-        	alert('Error al enviar la información');
-      	}
+ //document.getElementById('modal2').style.display='block';
+ var confirmacion = document.getElementById('confirmacion').value;
+ //console.log(e.target);
+ if(confirmacion == ''){
+  alert("Porfavor introduce tu correo electrónico para continuar");
+ }else{
+  if (elemento_select == "blanco") {
+   inscripcion_blanco();
+  } else {
+   $.ajax({
+       type: "POST",
+         url: "<?= base_url()?>index.php/Alumno/agregar_horario",
+         data: {"datos":datos,"ueas":lista_ueas, "confirmacion":confirmacion},
+         success: function(data) {
+          alert("Información enviada. Espera respuesta");
+     	  document.getElementById('modal1').style.display='none';
+     	  document.getElementById('modal2').style.display='none';
+     	  info_alumno();
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+           alert('Error al enviar la información. Asegurate de haber escrito el correo registrado');
+         }
     });
+  }
+ }
 }
 
 function inscripcion_blanco() {
-	//alert("insert() y send_email()");
-	$.ajax({
-		type: "POST",
-		url: "<?= base_url()?>index.php/Alumno/agregar_uea_blanco",
-		data: {"datos":datos},
-		success: function(data) {
-      		alert("Información enviada. Espera respuesta");
-			console.log("DENTRO DE LA VISTA ENVIAR_CONFIRMACION");
-			console.log(data);
-      	},
-      	error: function (xhr, ajaxOptions, thrownError) {
-        	alert('Error al enviar la información');
-      	}
-	})
+ //alert("insert() y send_email()");
+ var confirmacion = document.getElementById('confirmacion').value;
+ $.ajax({
+  type: "POST",
+  url: "<?= base_url()?>index.php/Alumno/agregar_uea_blanco",
+  data: {"datos":datos, "confirmacion":confirmacion},
+  success: function(data) {
+        alert("Información enviada. Espera respuesta");
+        document.getElementById('modal2').style.display='none';
+        info_alumno();
+       },
+       error: function (xhr, ajaxOptions, thrownError) {
+         alert('Error al enviar la información. Asegurate de haber escrito el correo registrado');
+       }
+ })
 }
 
 function info_alumno(){
     $.ajax({
     	type: "POST",
-      	url: "<?= base_url()?>index.php/Alumno/obtener_informacion",
+      	url: "<?= base_url()?>index.php/Alumno/mostrar_vista_alumno",
       	data: datos,
       	success: function(data) {
       		$('#infoUeas').replaceWith(data);

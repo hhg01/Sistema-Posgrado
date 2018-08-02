@@ -61,11 +61,6 @@
 		  										</tr>
 											</thead>
 <tbody>
-	<!--<tr>
-	    <td id="mi_email" type="text"><?php echo $profesor_info_personal[0]["email"];?></td>
-	    <td type="text">-></td>
-	    <td id="nuevo_email" type="text"></td>
-	</tr>-->
 	<tr>
 	    <td id="mi_telefono" type="text"><?php echo $profesor_info_personal[0]["telefono"];?></td>
 	    <td type="text">-></td>
@@ -302,15 +297,15 @@ function guardar_info() {
 	var localidad = document.getElementById('localidad').value;
 	var estado = document.getElementById('estados').value;
 	var municipio = document.getElementById('municipios').value;*/
-	datos_alumno = {"usuario":usuario, "telefono":telefono, "celular":celular, "correo":correo}//, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad, "municipio":municipio, "estado":estado, "id_direccion":id_direccion};
+	datos_profesor = {"usuario":usuario, "telefono":telefono, "celular":celular, "correo":correo}//, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad, "municipio":municipio, "estado":estado, "id_direccion":id_direccion};
 
-	if(correo == ''){
+	if(correo != '<?php echo $profesor_info_personal[0]["email"]?>'){
 		alert('Es necesario que escribas tu correo para confirmar los camibos');
 	} else {
 			$.ajax({
 				type: "POST",
 				url: "<?= base_url()?>index.php/Alumno/guardar_info_alumno",
-				data: datos_alumno,
+				data: datos_profesor,
 				success: function(data) {
 					document.getElementById('modal1').style.display='none';
 					alert("cambio efectuado");
@@ -327,7 +322,7 @@ function guardar_info() {
 function regresar() {
 	$.ajax({
     	type: "POST",
-    	url: "<?= base_url()?>index.php/Profesor/ingresar",
+    	url: "<?= base_url()?>index.php/Profesor/mostrar_ventana_profesor",
     	data: datosProf,
       	success: function(data) {
         	$('#datosPersonales').replaceWith(data);

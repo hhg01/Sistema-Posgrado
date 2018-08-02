@@ -41,6 +41,7 @@
             		<a class="waves-effect waves-light btn-large fondo" type="submit" name="action" id="ingresar" onclick="ingresar_profesores()">Ingresar</a>
           		</div>
         	</div>
+        	<a class="waves-effect waves-light btn-large fondo" type="submit" name="action" id="ingresar" href="<?= base_url()?>">Regresar</a>
       	</div>
 	</div>
 </body>
@@ -57,7 +58,7 @@ function ingresar_profesores(){
 	  	};
 	  	$.ajax({
 	    	type: "POST",
-	    	url: "<?= base_url()?>index.php/Profesor/ingresar",
+	    	url: "<?= base_url()?>index.php/Profesor/pasar_a_hash",
 	    	data: datos,
 	    	success: function(data) {
 	      		$('#contenido').replaceWith(data);

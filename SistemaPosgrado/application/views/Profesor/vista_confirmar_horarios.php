@@ -5,20 +5,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style type="text/css">
-		.new_color{
-			background-color: #035887;
-		}
-		.card_color{
-			background-color: #c4e9fe;
-		}
-		.button_color{
-			background-color: #035887;
-		}
-		.button_color2{
-			background-color: #035887;
-		}
-	</style>
+<style type="text/css">
+	.new_color{
+		background-color: #035887;
+	}
+	.card_color{
+		background-color: #c4e9fe;
+	}
+	.button_color{
+		background-color: #035887;
+	}
+	.button_color2{
+		background-color: #035887;
+	}
+</style>
 </head>
 <body>
 
@@ -114,7 +114,7 @@ function confirmar_uea() {
         	//$('#vista_confirmar_horarios').replaceWith(data);
         },
       	error: function (xhr, ajaxOptions, thrownError) {
-            alert('Revisa bien los campos');
+            alert('Error: intentalo otra vez');
         }
     });
 }
@@ -130,7 +130,7 @@ function cancelar_uea() {
         	//$('#vista_confirmar_horarios').replaceWith(data);
         },
       	error: function (xhr, ajaxOptions, thrownError) {
-            alert('Revisa bien los campos');
+            alert('Error: intentalo otra vez');
         }
     });
 }

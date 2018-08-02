@@ -54,16 +54,21 @@
 			                    <th data-field="name">Nivel</th>
                   			</tr>
                 		</thead>';
-                  		foreach ($tutorados as &$tutorado) {
-                    	echo
-                    	'<tbody>
-                      		<tr id="clave'.$tutorado["matricula"].'">
-		                        <td><id="nombre" type="text">'.$tutorado["apellido_paterno"].' '.$tutorado["apellido_materno"].' '.$tutorado["nombres"].'</td>
-		                        <td><id="nivel" type="text">'.$tutorado["nivel"].'</td>
-		                        <td><a id="id'.$tutorado["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$tutorado["matricula"].')"><i class="material-icons center">schedule</i></a></td>
-                      		</tr>
-                    	</tbody>';
-                  		}
+                  		if ($tutorados != NULL) {
+                        foreach ($tutorados as &$tutorado) {
+                          echo
+                          '<tbody>
+                              <tr id="clave'.$tutorado["matricula"].'">
+                                <td><id="nombre" type="text">'.$tutorado["apellido_paterno"].' '.$tutorado["apellido_materno"].' '.$tutorado["nombres"].'</td>
+                                <td><id="nivel" type="text">'.$tutorado["nivel"].'</td>
+                                <td><a id="id'.$tutorado["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$tutorado["matricula"].')"><i class="material-icons center">schedule</i></a></td>
+                              </tr>
+                          </tbody>';
+                        }
+                      } else {
+                        echo "<td></td>";
+                      }
+                      
               			echo
               		'</table>
             	</div>
@@ -86,16 +91,21 @@
 			                    <th data-field="name">Nivel</th>
                   			</tr>
                 		</thead>';
-                  		foreach ($asesorados as &$asesor) {
-                    	echo
-                    	'<tbody>
-                      		<tr id="clave'.$asesor["matricula"].'">
-		                        <td><id="nombre" type="text">'.$asesor["apellido_paterno"].' '.$asesor["apellido_materno"].' '.$asesor["nombres"].'</td>
-		                        <td><id="nivel" type="text">'.$asesor["nivel"].'</td>
-		                        <td><a id="id'.$asesor["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$asesor["matricula"].')"><i class="material-icons center">schedule</i></a></td>
-                      		</tr>
-                    	</tbody>';
-                  		}
+                  		if ($asesorados != NULL) {
+                        foreach ($asesorados as &$asesor) {
+                          echo
+                          '<tbody>
+                              <tr id="clave'.$asesor["matricula"].'">
+                                <td><id="nombre" type="text">'.$asesor["apellido_paterno"].' '.$asesor["apellido_materno"].' '.$asesor["nombres"].'</td>
+                                <td><id="nivel" type="text">'.$asesor["nivel"].'</td>
+                                <td><a id="id'.$asesor["matricula"].'" class="waves-effect waves-light btn-small button_color" onclick="revisar_horario('.$asesor["matricula"].')"><i class="material-icons center">schedule</i></a></td>
+                              </tr>
+                          </tbody>';
+                        }
+                      } else {
+                        echo "<td></td>";
+                      }
+                      
               			echo
               		'</table>
             	</div>
@@ -146,7 +156,7 @@ function revisar_horario(id) {
 function regresar() {
 	$.ajax({
     	type: "POST",
-    	url: "<?= base_url()?>index.php/Profesor/ingresar",
+    	url: "<?= base_url()?>index.php/Profesor/mostrar_ventana_profesor",
     	data: datosProf,
       	success: function(data) {
         	$('#vista_lista_alumnos').replaceWith(data);

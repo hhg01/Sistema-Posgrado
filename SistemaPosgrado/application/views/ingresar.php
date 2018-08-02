@@ -6,77 +6,89 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="UFT-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/materialize.min.css">
-	<script src="<?= base_url()?>assets/js/jquery.min.js"></script>
-  	<script src="<?= base_url()?>assets/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/SistemaPosgrado/assets/css/materialize.min.css">
+	<script src="http://localhost/SistemaPosgrado/assets/js/jquery.min.js"></script>
+  	<script src="http://localhost/SistemaPosgrado/assets/js/materialize.min.js"></script>
 	<title>Posgrado UAM</title>
 <style>
-.card {
-    border-radius: 50%;
-   
+.diseño {
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   background-color: #035887;
 }
-.color{
-	background: #388135;
+.circle{
+  position:relative;
+  width:100%;
+  padding-bottom:100%;
+  background: #71c46e;
+  border-radius:50%;
 }
-.fondo{
-	background: #71c46e;
+.circle img{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  margin:0;
 }
 </style>
 </head>
 
 <body id="contenido">
-	<div class="row"><!--Logo y mensaje de bienvenida-->
-	<br>
+
+	<div class="row">
 		<div class="col s12 m12 l12 center">
-			<img src="<?= base_url()?>assets/imag/logo_pcyti_small.png" class="resposive-img">
-			<br>
-			<h2>Bienvenido al Sistema</h2>
+			<a href="http://pcyti.izt.uam.mx/" target="_blank">
+				<img src="http://localhost/SistemaPosgrado/assets/imag/logo_pcyti_small.png" class="resposive-img">
+			</a>
+			<h2>Bienvenido</h2>
     	</div>
 	</div>
-	
-	<br>
-		<!--Botones de acceso-->
+
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m1 l1"></div>
 			<div class="col s12 m3 l3">
-				<a style="display:block" href="http://localhost:8080/SistemaPosgrado/index.php/Ingresar/ingresar_alumno">
-		        	<div class="card fondo hoverable">
+	      		<a style="display:block" href="http://localhost/SistemaPosgrado/index.php/Ingresar/ingresar_alumno">
+		        	<div>
 		          		<div class="card-content">
-		          			<div class="container">
-		          				<img class="circle responsive-img" src="<?= base_url()?>assets/imag/study.png" href="">
-		          				<span class="card-title blue-text text-lighten-5" style="text-align: center"><strong>Alumnos</strong></span>
+		          			<div class="circle">
+		          				<img class="circleimg responsive-img" src="http://localhost/SistemaPosgrado/assets/imag/study.png">
 		          			</div>
 		          		</div>
+		          		<div class="card-action center-align black-text">
+				          	<p><strong>Alumnos</strong></p>
+        				</div>
 		        	</div>
-	        	</a>
+		        </a>
 	      	</div>
 	      	<div class="col s12 m4 l4"></div>
 	      	<div class="col s12 m3 l3">
-	      		<a style="display:block" href="http://localhost:8080/SistemaPosgrado/index.php/Ingresar/ingresar_profesor">
-		        	<div class="card efect fondo hoverable">
+	      		<a style="display:block" href="http://localhost/SistemaPosgrado/index.php/Ingresar/ingresar_profesor">
+		        	<div>
 		          		<div class="card-content">
-		          			<div class="container">
-		          				<img class="circle responsive-img" src="<?= base_url()?>assets/imag/teacher.png">
-		          				<span class="card-title blue-text text-lighten-5" style="text-align: center"><strong>Profesores</strong></span>
+		          			<div class="circle">
+		          				<img class="circleimg responsive-img" src="http://localhost/SistemaPosgrado/assets/imag/teacher.png">
 		          			</div>
 		          		</div>
+		          		<div class="card-action center-align black-text">
+				          	<p><strong>Profesores/Admin</strong></p>
+        				</div>
 		        	</div>
 		        </a>
 	      	</div>
 		</div>
 	</div>
-
-	<br>
-	<footer class="page-footer color">
+	
+	<footer class="page-footer diseño">
       	<div class="footer-copyright">
         	<div class="container">
         		© 2018 Copyright
-        	<a class="grey-text text-lighten-4 right" href="#!">UAM</a>
+        	<a class="grey-text text-lighten-4 right" href="http://www.izt.uam.mx/" target="_blank">UAM-I</a>
         	</div>
       	</div>
     </footer>
 
-<script src="<?= base_url()?>assets/js/materialize.min.js"></script>
+<script src="http://localhost/SistemaPosgrado/assets/js/materialize.min.js"></script>
 </body>
 </html>

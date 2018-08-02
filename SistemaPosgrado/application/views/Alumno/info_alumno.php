@@ -252,7 +252,7 @@
 var datos;
 $(document).ready(function(){
 	var matricula = <?php echo $alumno_info_personal[0]["matricula"]?>;
-	var password = <?php echo $alumno_info_personal[0]["password"]?>;
+	var password = '<?php echo $alumno_info_personal[0]["password"]?>';
 	var nivel = '<?php echo $alumno_info_personal[0]["nivel"]?>';
 	datos = {'matricula': matricula, 'nivel': nivel, 'contraseña':password};
 	//console.log(email_bd);
@@ -337,7 +337,7 @@ function guardar_info() {
 	var municipio = document.getElementById('municipios').value;*/
 	datos_alumno = {"usuario":usuario, "telefono":telefono, "celular":celular, "correo":correo}//, "vialidad":vialidad, "exterior":exterior, "interior":interior, "cp":cp, "localidad":localidad, "municipio":municipio, "estado":estado, "id_direccion":id_direccion};
 
-	if(correo == ''){
+	if(correo != '<?php echo $alumno_info_personal[0]["email"]?>'){
 		alert('Es necesario que escribas tu correo para confirmar los camibos');
 	} else {
 			$.ajax({

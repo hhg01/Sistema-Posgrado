@@ -7,30 +7,36 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style type="text/css">
-	.new_color{
-		background-color: #035887;
-	}
-	.card_color{
-			background-color: #c4e9fe;
-		}
+.new_color{
+	background-color: #035887;
+}
+.card_color{
+		background-color: #c4e9fe;
+}
 </style>
 <body>
 
 <div id="infoAcademica">
 	<div class="navbar-fixed">
-	  	<nav class="nav-extended new_color">
-	    	<div class="nav-wrapper">
+		<nav>
+	    	<div class="nav-wrapper new_color">
+	      		<a src="http://localhost/SistemaPosgrado/assets/imag/logo_pcyti_small.png" class="brand-logo right"></a>
+	      		<a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
 	        		<li><a onclick="info_alumno()">Información Personal</a></li>
 			        <li><a class="active">Información Academica</a></li>
 			        <li><a onclick="inscripcion()">Inscripción</a></li>
-	      		</ul>
-	      		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="<?= base_url()?>">Cerrar sesión</a></li>
 	      		</ul>
 	    	</div>
 	  	</nav>
-	</div>
+	  	<ul class="sidenav" id="mobile-demo">
+		    <li><a onclick="info_alumno()">Información Personal</a></li>
+	        <li><a class="active">Información Academica</a></li>
+	        <li><a onclick="inscripcion()">Inscripción</a></li>
+	        <li><a href="<?= base_url()?>">Cerrar sesión</a></li>
+		</ul>
+  	</div>
 
 	<div class="conteiner">
 		<div class="row">
@@ -41,7 +47,7 @@
 <?php echo
 '<div class="conteiner">
 	<div class="row">
-		<div class="col s4 m4 l4">
+		<div class="col s12 m6 l4">
 			<div class="card-content">
 			<label>Matricula:</label><input type="text" id="matricula" readonly=”readonly” style="border:none" name="matricula" value="'.$alumno_info_academica[0]["matricula"].'">';
 			if ($alumno_info_academica[0]["nivel"] == "M") {
@@ -55,14 +61,14 @@
 			<label>Unidad:</label><input type="text" id="unidad" readonly=”readonly” style="border:none" name="unidad" value="'.$alumno_info_academica[0]["unidad"].'">
 			</div>
 		</div>
-		<div class="col s4 m4 l4">
+		<div class="col s12 m6 l4">
 			<div class="card-content">
 				<label>Departamento:</label><input type="text" id="departamento" readonly=”readonly” style="border:none" name="departamento" value="'.$alumno_info_academica[0]["departamento"].'">
 				<label>Posgrado:</label><input type="text" id="nombre" readonly=”readonly” style="border:none" name="nombre" value="'.$alumno_info_academica[0]["nombre"].'">
 				<label>Proyecto:</label><input type="text" id="titulo" readonly=”readonly” style="border:none" name="titulo" value="'.$alumno_info_academica[0]["titulo"].'">
 			</div>
 		</div>
-		<div class="col s4 m4 l4">
+		<div class="col s12 m6 l4">
 			<div class="card-content">
 				<label>Fecha Ingreso:</label><input type="text" id="fecha_ingreso" readonly=”readonly” style="border:none" name="fecha_ingreso" value="'.$alumno_info_academica[0]["fecha_ingreso"].'">';
 
@@ -103,10 +109,15 @@
 <script src="<?= base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url()?>assets/js/materialize.min.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+
 function info_alumno(){
     $.ajax({
     	type: "POST",
-      	url: "<?= base_url()?>index.php/Alumno/obtener_informacion",
+      	url: "<?= base_url()?>index.php/Alumno/mostrar_vista_alumno",
       	data: datos,
       	success: function(data) {
       		$('#infoAcademica').replaceWith(data);

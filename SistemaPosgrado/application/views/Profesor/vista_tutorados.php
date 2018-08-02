@@ -46,7 +46,7 @@ foreach ($tutorados as $tutorado) {
 	'<div class="col s12 m6 l3">
 		<div class="card card_color lighten-4">
 			<div class="card-image">
-  				<img class="activator responsive-img" src="<?= base_url()?>assets/imag/man.png">
+  				<img class="activator responsive-img" src="'.base_url().'assets/imag/man.png">
   				<a class="btn-floating halfway-fab waves-effect waves-light blue" id="clave'.$tutorado["matricula"].'" onclick="info_alumno('.$tutorado["matricula"].')"><i class="material-icons">add</i></a>
 			</div>
 			<div class="card-content">
@@ -85,7 +85,7 @@ foreach ($tutorados as $tutorado) {
 function regresar() {
 	$.ajax({
     	type: "POST",
-    	url: "<?= base_url()?>index.php/Profesor/ingresar",
+    	url: "<?= base_url()?>index.php/Profesor/mostrar_ventana_profesor",
     	data: datosProf,
       	success: function(data) {
         	$('#vista_tutorados').replaceWith(data);

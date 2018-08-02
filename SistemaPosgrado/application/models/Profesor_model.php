@@ -7,7 +7,7 @@ class Profesor_model extends CI_Model{
 	}
 
 	function obtener_profesor($economico,$contraseña){
-		$custom_query = "SELECT te.no_economico, apellido_paterno, apellido_materno, nombres, se.password, se.bandera FROM USERS AS us JOIN TEACHERS AS te on us.id_user=te.id_user JOIN SESSIONS AS se on us.id_user=se.id_user WHERE te.no_economico=".$economico." AND se.password=".$contraseña;//md5($contraseña);
+		$custom_query = "SELECT te.no_economico, apellido_paterno, apellido_materno, nombres, se.password, se.cambioPass FROM USERS AS us JOIN TEACHERS AS te on us.id_user=te.id_user JOIN SESSIONS AS se on us.id_user=se.id_user WHERE te.no_economico=".$economico." AND se.password=".$contraseña;
 		$respuesta_query = $this->db->query($custom_query);
 
 		if ($respuesta_query->num_rows() > 0) {
@@ -51,7 +51,7 @@ class Profesor_model extends CI_Model{
  	}
 
  	function obtener_horarios($matricula){
- 		$custom_query = "SELECT st.id_student, st.matricula, us.apellido_paterno, us.apellido_materno, us.nombres, u.clave_uea, u.nombre, u.creditos FROM STUDENTS AS st JOIN REQUESTS AS re on st.id_student=re.id_student JOIN PLANNING AS pl on re.id_planning=pl.id_planning JOIN UEAS as u on pl.id_uea=u.clave_uea JOIN USERS AS us on st.id_user=us.id_user WHERE st.matricula=".$matricula;
+ 		$custom_query = "SELECT st.id_student, st.matricula, us.apellido_paterno, us.apellido_materno, us.nombres, u.clave_uea, u.nombre, u.creditos, re.estado_request FROM STUDENTS AS st JOIN REQUESTS AS re on st.id_student=re.id_student JOIN PLANNING AS pl on re.id_planning=pl.id_planning JOIN UEAS as u on pl.id_uea=u.clave_uea JOIN USERS AS us on st.id_user=us.id_user WHERE st.matricula=".$matricula;
  		$respuesta_query = $this->db->query($custom_query);
 
   		if ($respuesta_query->num_rows() > 0) {
@@ -66,7 +66,6 @@ class Profesor_model extends CI_Model{
         var_dump($custom_query);
 		$respuesta_query = $this->db->query($custom_query);
 
-		//return "Hola, ya actualizamos tus datos";
 		return $respuesta_query;
  	}
 
@@ -84,11 +83,23 @@ class Profesor_model extends CI_Model{
 		return $respuesta_query;
  	}
 
-	function cambiar_contrasena($nueva_contrasena, $economico){
-		$custom_query = "UPDATE SESSIONS SET password= ".$nueva_contrasena.", bandera =1 WHERE id_user=(SELECT u.id_user FROM TEACHERS AS t INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE t.no_economico = ".$economico.")";
-		$respuesta_query = $this->db->query($custom_query);
-		return $respuesta_query;
+ 	function cambiar_contrasena($nueva_contrasena, $economico){
+	  //, cambioPass =1
+	  $custom_query = "UPDATE SESSIONS SET password= '".$nueva_contrasena."', cambioPass =1 WHERE id_user=(SELECT u.id_user FROM TEACHERS AS t INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE t.no_economico = ".$economico.")";
+	  $respuesta_query = $this->db->query($custom_query);
+	  return $respuesta_query;
 
 	}
+
+	function obtener_correo_coordinador(){
+		$nombre='Posgrado en Ciencias y Tecnologías de la Información';
+		$custom_query="SELECT u.email FROM POSTGRADUATE AS p INNER JOIN COORDINATIONS AS c ON p.id_postgraduate = c.id_postgraduate INNER JOIN TEACHERS AS t ON c.id_teacher = t.id_teacher INNER JOIN USERS AS u ON t.id_user = u.id_user WHERE p.nombre='".$nombre."'";
+		$respuesta_query=$this->db->query($query);
+		if ($respuesta_query->num_rows() > 0) {
+		return $respuesta_query->result_array();
+		} else {
+		return $respuesta_query=NULL;
+		}
+    }
 }
 
